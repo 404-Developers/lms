@@ -22,6 +22,7 @@ time, mark, audio, video {
 
 body {
     line-height:1;
+    width: 100%;
 }
 
 article,aside,details,figcaption,figure,
@@ -99,27 +100,27 @@ input, select {
 /*----------------------------------------------home page----------------------*/
 
 .wrapper{
-    height: 660px;
-    width: 1350px;
+    height: 100%;
+    width: 100%;
    /* background-color: blue;*/
 }
 
 header{
-    width: 1364px;
+    width: 100%;
     background-color: black;
     height: 90px;
 }
 
 section{
     height: 550px;
-    width: 1364px;
+    width: 100%;
     background-color: gray;
   /*   background-image: url("../images/1.jpg");*/
 }
 
 footer{
     height: 90px;
-    width: 1364px;
+    width: 100%;
     background-color: black;
 }
 
@@ -155,9 +156,12 @@ nav li
 
 section .sec_img
 {
-    height:550px;
+    height:100%;
     margin-top: 0px;
-    background-image: url("../images/home.jpg");
+    background-image: url("../images/home1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
