@@ -22,7 +22,6 @@ time, mark, audio, video {
 
 body {
     line-height:1;
-    width: 100%;
 }
 
 article,aside,details,figcaption,figure,
@@ -100,27 +99,27 @@ input, select {
 /*----------------------------------------------home page----------------------*/
 
 .wrapper{
-    height: 100%;
-    width: 100%;
+    height: 660px;
+    width: 1350px;
    /* background-color: blue;*/
 }
 
 header{
-    width: 100%;
+    width: 1364px;
     background-color: black;
     height: 90px;
 }
 
 section{
     height: 550px;
-    width: 100%;
+    width: 1364px;
     background-color: gray;
   /*   background-image: url("../images/1.jpg");*/
 }
 
 footer{
     height: 90px;
-    width: 100%;
+    width: 1364px;
     background-color: black;
 }
 
@@ -163,6 +162,14 @@ section .sec_img
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+/*section .sec_img
+{
+    height:550px;
+    margin-top: 0px;
+    background-image: url("../images/home.jpg");
+}*/
 
 
 .box
