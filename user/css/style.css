@@ -217,6 +217,10 @@ input
     /*width: 1300px;*/
     margin-top: 0px;
     background-image: url("../images/reg.jpg");
+    /*background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;*/
 }
 .box2
 {
