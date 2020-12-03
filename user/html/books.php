@@ -9,13 +9,10 @@ include "nav.php";
 <head>
 
   <title>Books</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-
-
   
 </head>
 <body>
+
   <h2>List of Books</h2>
   <?php
 
