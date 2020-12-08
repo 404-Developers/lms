@@ -31,6 +31,7 @@ footer,header,hgroup,menu,nav,section {
 
 nav ul {
     list-style:none;
+   
 }
 
 blockquote, q {
@@ -111,14 +112,14 @@ header{
 }
 
 section{
-    height: 550px;
+    /* height: 650px; */
     width: 1364px;
     background-color: gray;
   /*   background-image: url("../images/1.jpg");*/
 }
 
 footer{
-    height: 90px;
+    height: 110px;
     width: 1364px;
     background-color: black;
 }
@@ -189,13 +190,14 @@ section .sec_img
     height: 590px;
     margin-top: 0px;
     background-image: url("../images/login.jpg");
+    background-size: cover;
 }
 .box1
 {
-    height: 350px;
-    width: 400px;
+    height: 400px;
+    width: 450px;
     background-color: black;
-    margin: 70px auto;
+    margin: 0px auto;
     opacity: .7;
     color: white;
     padding: 20px;
@@ -224,8 +226,8 @@ input
 }
 .box2
 {
-    height: 500px;
-    width: 400px;
+    height: 520px;
+    width: 450px;
     background-color: black;
     margin: 0px auto;
     opacity: .7;

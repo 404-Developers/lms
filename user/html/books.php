@@ -10,17 +10,22 @@ include "nav.php";
 
   <title>Books</title>
   
+ 
+  
+  
+    
 </head>
 <body>
 
-  <h2>List of Books</h2>
+
+  <h2 style="text-align: center; padding:35px;"><b>List of Books</b></h2>
   <?php
 
 
     $res=mysqli_query($db,"SELECT * FROM `books` ORDER BY `books`.`name` ASC;");
 
-    echo "<table class='table table-bordered table-hover' >";
-      echo "<tr style='background-color: white;'>";
+    echo "<table class='table table-dark' id='example' >";
+      echo "<tr style='background-color: grey;' >";
         //Table header
         echo "<th>"; echo "ID"; echo "</th>";
         echo "<th>"; echo "Book-Name";  echo "</th>";
@@ -45,7 +50,7 @@ include "nav.php";
     echo "</table>"
 ; ?>
 
-
+  
 
 </body>
 
