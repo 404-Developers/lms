@@ -8,6 +8,7 @@ include "nav.php";
 <html>
 <head>
 
+<<<<<<< HEAD
   <title>Books</title>
   <style type="text/css">
       .srch
@@ -29,6 +30,11 @@ include "nav.php";
     </form>
   </div>
   
+=======
+  <title>Books</title>   
+</head>
+<body>
+>>>>>>> a3b9a4e8d81bd39bdc8c852a43bb448326228193
 
 
   <h2>List of Books></h2>
