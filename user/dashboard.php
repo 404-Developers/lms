@@ -14,12 +14,13 @@ body {
 
 .sidenav {
   height: 100%;
+  margin-top: 90px;
   width: 0;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color:black;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -46,6 +47,8 @@ body {
   margin-left: 50px;
 }
 
+
+
 #main {
   transition: margin-left .5s;
   padding: 16px;
@@ -55,15 +58,23 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+.h:hover{
+  color: white;
+  width: 300px;
+  height:50px ;
+  background-color: grey;
+
+}
 </style>
 </head>
 <body>
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">StudentInformation</a>
-  <a href="#">ReturnBooks</a>
-  <a href="#">IssueBooks</a>
-  <a href="#">Books</a>
+  <a href="dashboard.php">Dashboard</a>
+  <a href="student.php">StudentInformation</a>
+  <a href="#">Books request</a>
+  <a href="#">Issue Books</a>
+  <a href="books.php">Books</a>
 </div>
 
 <div id="main">

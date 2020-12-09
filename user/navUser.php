@@ -28,7 +28,7 @@ session_start();
 
 <nav>
         <ul>
-          <li><a href="student.php">studentInformation</a></li>
+          
           <li><a href="">
             <div style="color: white;">
             <?php
