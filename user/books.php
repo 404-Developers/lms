@@ -12,11 +12,11 @@
       <head>  
           <title></title>  
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-          <link rel="stylesheet" type="text/css" href="../bootstrap/css/main.css">
-          <script src="../bootstrap/js/jquery-3.5.1.js"></script>
-          <script src="../bootstrap/js/main.js" ></script>
-          <script src="js/bootstrap.js"></script>
+          <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+          <link rel="stylesheet" type="text/css" href="bootstrap/css/main.css">
+          <script src="bootstrap/js/jquery-3.5.1.js"></script>
+          <script src="bootstrap/js/main.js" ></script>
+          <script src="bootstrap/js/bootstrap.js"></script>
           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
           <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
           <!-- <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
