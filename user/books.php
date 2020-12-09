@@ -36,7 +36,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color:black;
+    background-color:#222;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -80,20 +80,22 @@
     color: white;
     width: 300px;
     height:50px ;
-    background-color: grey;
+    background-color:#17a2b8;
 
   }
 </style>
       </head>  
       <body>
       <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="dashboard.php">Dashboard</a>
-  <a href="student.php">StudentInformation</a>
-  <a href="#">Books request</a>
-  <a href="#">Issue Books</a>
-  <a href="books.php">Books</a>
-</div>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="h"><a href="dashboard.php">Dashboard</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="#">Books request</a></div>
+        <div class="h"><a href="#">Issue Books</a></div>
+        <div class="h"><a href="books.php">Books Information</a></div>
+        <div class="h"><a href="addBooks.php">Add Books</a></div>
+        
+      </div>
 
 <div id="main">
  
