@@ -1,5 +1,5 @@
 <?php
-  include "../conn.php";
+  include "conn.php";
   include "nav.php";
   
   
@@ -11,7 +11,7 @@
 <head>
 
   <title>Student Login</title>
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 

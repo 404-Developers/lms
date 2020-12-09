@@ -9,7 +9,7 @@ session_start();
 <head>
 <title></title>
 
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -28,6 +28,7 @@ session_start();
 
 <nav>
         <ul>
+          <li><a href="student.php">studentInformation</a></li>
           <li><a href="">
             <div style="color: white;">
             <?php
@@ -47,7 +48,7 @@ session_start();
 ?>
 
 <div class="logo">
-      <img src="../images/logo.jpg">
+      <img src="images/logo.jpg">
       <h1 style="color: white; font-size: medium;">LIBRARY MANAGEMENT SYSTEM</h1>
       <!-- <h1 style="color: white; font-size: 25px;word-spacing: 10px; line-height: 80px;margin-top: 20px;">ONLINE LIBRARY MANAGEMENT SYSTEM</h1> -->
     </div>

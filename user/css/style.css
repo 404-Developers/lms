@@ -1,162 +1,233 @@
-
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, summary,
-time, mark, audio, video {
-    margin:0;
-    padding:0;
-    border:0;
-    outline:0;
-    font-size:100%;
-    vertical-align:baseline;
-    background:transparent;
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
 }
 
 body {
-    line-height:1;
+    line-height: 1;
 }
 
-article,aside,details,figcaption,figure,
-footer,header,hgroup,menu,nav,section {
-    display:block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
 }
 
 nav ul {
-    list-style:none;
-   
+    list-style: none;
 }
 
-blockquote, q {
-    quotes:none;
+blockquote,
+q {
+    quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content:'';
-    content:none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
 }
 
 a {
-    margin:0;
-    padding:0;
-    font-size:100%;
-    vertical-align:baseline;
-    background:transparent;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
 }
 
+
 /* change colours to suit your needs */
+
 ins {
-    background-color:#ff9;
-    color:#000;
-    text-decoration:none;
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
 }
 
+
 /* change colours to suit your needs */
+
 mark {
-    background-color:#ff9;
-    color:#000;
-    font-style:italic;
-    font-weight:bold;
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
 }
 
 del {
     text-decoration: line-through;
 }
 
-abbr[title], dfn[title] {
-    border-bottom:1px dotted;
-    cursor:help;
+abbr[title],
+dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
 }
 
 table {
-    border-collapse:collapse;
-    border-spacing:0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
 
 /* change border colour to suit your needs */
+
 hr {
-    display:block;
-    height:1px;
-    border:0;  
-    border-top:1px solid #cccccc;
-    margin:1em 0;
-    padding:0;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin: 1em 0;
+    padding: 0;
 }
 
-input, select {
-    vertical-align:middle;
+input,
+select {
+    vertical-align: middle;
     /*height: 40px;*/
 }
 
 
 /*----------------------------------------------home page----------------------*/
 
-.wrapper{
+.wrapper {
     height: 660px;
     width: 1350px;
-   /* background-color: blue;*/
+    /* background-color: blue;*/
 }
 
-header{
+header {
     width: 1364px;
     background-color: black;
     height: 90px;
 }
 
-section{
+section {
     /* height: 650px; */
     width: 1364px;
     background-color: gray;
-  /*   background-image: url("../images/1.jpg");*/
+    /*   background-image: url("../images/1.jpg");*/
 }
 
-footer{
+footer {
     height: 110px;
     width: 1364px;
     background-color: black;
 }
 
-.logo
-{
-    float :left;
+.logo {
+    float: left;
     padding-left: 20px;
-
 }
-.logo img 
-{
+
+.logo img {
     padding-left: 30px;
     padding-right: 100px;
     height: 60px;
 }
 
-li a
-{
+li a {
     color: white;
     text-decoration: none;
 }
-nav
-{
+
+nav {
     float: right;
     word-spacing: 30px;
     padding: 20px;
 }
-nav li 
-{
+
+nav li {
     display: inline-block;
     line-height: 80px;
 }
 
-section .sec_img
-{
-    height:100%;
+section .sec_img {
+    height: 100%;
     margin-top: 0px;
     background-image: url("../images/home1.jpg");
     background-position: center;
@@ -172,9 +243,7 @@ section .sec_img
     background-image: url("../images/home.jpg");
 }*/
 
-
-.box
-{
+.box {
     height: 300px;
     width: 450px;
     background-color: #030002;
@@ -183,17 +252,17 @@ section .sec_img
     color: white;
 }
 
+
 /*--------------------------------st_login-----------------------------*/
 
-.log_img
-{
+.log_img {
     height: 590px;
     margin-top: 0px;
     background-image: url("../images/login.jpg");
     background-size: cover;
 }
-.box1
-{
+
+.box1 {
     height: 400px;
     width: 450px;
     background-color: black;
@@ -202,19 +271,20 @@ section .sec_img
     color: white;
     padding: 20px;
 }
-form .login
-{
+
+form .login {
     margin: auto 50px;
 }
-input
-{
+
+input {
     height: 25px;
     width: 300px;
-
 }
+
+
 /*------------------------------registration--------------------*/
-.reg_img
-{
+
+.reg_img {
     height: 565px;
     /*width: 1300px;*/
     margin-top: 0px;
@@ -224,8 +294,8 @@ input
     background-size: cover;
     width: 100%;*/
 }
-.box2
-{
+
+.box2 {
     height: 520px;
     width: 450px;
     background-color: black;
