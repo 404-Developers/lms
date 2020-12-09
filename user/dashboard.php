@@ -80,7 +80,7 @@ body {
 <div id="main">
  
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-</div>
+
 
 <script>
 function openNav() {
@@ -96,7 +96,7 @@ function closeNav() {
 }
 </script>
    
- 
+</div>
 </body>
 
 </html>

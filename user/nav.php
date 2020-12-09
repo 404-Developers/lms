@@ -27,12 +27,11 @@
 
         <nav>
           <ul>
-          <li><a href="i.php">HOME</a></li>
             <li><a href="index.php">HOME</a></li>
             <li><a href="bookHome.php">BOOKS</a></li>
             <li><a href="stdLogin.php">USER-LOGIN</a></li>
             <li><a href="librarianLogin.php">LIBRARIAN</a></li>
-            <li><a href="f.php">FEEDBACK</a></li>
+           
           </ul>
         </nav>
   </header>
