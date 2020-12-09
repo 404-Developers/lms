@@ -1,7 +1,7 @@
 <?php
  
 //$connection=mysqli_connect(server,user,pass,name)
-$db=mysqli_connect('localhost','root','rosi1234','library',);
+$db=mysqli_connect('localhost','root','','library');
 
 //   mysqli_connect_errno();             checking connection
 

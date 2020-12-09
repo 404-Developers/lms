@@ -28,10 +28,14 @@ session_start();
 
 <nav>
         <ul>
-          <li style="color: white;">
+          <li><a href="">
+            <div style="color: white;">
             <?php
-              echo $_SESSION['login_user'];
+              echo "WELCOME".$_SESSION['login_user'];
             ?>
+            </div>
+            
+            </a>
           </li>
           <li><a href="index.php">LOGOUT</a></li>
         </ul>

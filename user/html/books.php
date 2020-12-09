@@ -8,41 +8,37 @@ include "nav.php";
 <html>
 <head>
 
-<<<<<<< HEAD
   <title>Books</title>
-  <style type="text/css">
-      .srch
-      {
-          <padding-Left: 1000px;
-      }
-      </style>   
+  <!-- <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+  
+     
+     
 </head>
 <body> 
-  <div class="srch">
-    <form class="navbar-form" method="post" name="form1">
-      
-        <input class="form-control" type="text" name="search" placeholder="search books.." required="">
-        <button style="backgroud-color:grey1; " type="submit " name="submit" class="btn-btn-default">
-            <span class="glyphicon glyphicon-search"></span>
-        </button>
-  
-      
+  <!-- search bar -->
+  <div class="form-group has-search" style="margin:10px; float:right; padding-left:800px; ">
+    <form class="form-inline" action="books.php">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text"  name="search" class="form-control" placeholder="Search hear..." >
+      <button class="btn btn-dark" type="submit" name="submit">Search</button>
     </form>
   </div>
+  <br>
+  <br>
   
-=======
-  <title>Books</title>   
-</head>
-<body>
->>>>>>> a3b9a4e8d81bd39bdc8c852a43bb448326228193
 
 
-  <h2>List of Books></h2>
+  <h2 style="float:right;">List of Books</h2>
   <?php
 
         if(isset($_POST['submit']))
         {
-          $q=mysqli_query($bd,"SELECT * from books where name like '%$_POST[search]%' ");
+          $q=mysqli_query($db,"SELECT * from  `books` where `name` like '%$_POST[search]%' ");
 
           if(mysqli_num_rows($q)==0)
           {
@@ -50,7 +46,7 @@ include "nav.php";
           }
           else
           {
-      echo "<table class='table table-dark' id='example' >";
+      echo "<table id='example' class='table table-dark' >";
           echo "<tr style='background-color: grey;' >";
               //Table header
               echo "<th>"; echo "ID"; echo "</th>";

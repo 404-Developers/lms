@@ -2,7 +2,7 @@
 
 include "../conn.php";
 include "nav.php";
-session_start();
+
 
 ?>
 <!DOCTYPE html>
