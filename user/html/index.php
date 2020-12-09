@@ -2,6 +2,7 @@
 
 include "../conn.php";
 include "nav.php";
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -30,6 +31,8 @@ include "nav.php";
 	}
 </style>
 </head>
+
+
 
 
 <body>

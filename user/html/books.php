@@ -8,12 +8,7 @@ include "nav.php";
 <html>
 <head>
 
-  <title>Books</title>
-  
- 
-  
-  
-    
+  <title>Books</title>   
 </head>
 <body>
 
