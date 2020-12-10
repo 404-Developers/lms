@@ -1,6 +1,7 @@
 <?php
   include "conn.php";
   include "navUser.php";
+  
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@
 
 .sidenav {
   height: 100%;
-  margin-top: 50px;
+  margin-top: 90px;
   width: 0;
   position: fixed;
   z-index: 1;
@@ -67,10 +68,10 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
-.img-circle
+/* .img-circle
 {
 	margin-left: 20px;
-}
+} */
 .h:hover
 {
 	color:white;
@@ -79,11 +80,7 @@
     background-color:#17a2b8;
 }
 
-.book
-{
-    width: 400px;
-    margin: 0px auto;
-}
+
 .form-control
 {
   background-color: #080707;
@@ -99,45 +96,58 @@
 	<!--_________________sidenav_______________-->
 	
 	<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
   			<div style="color: white; margin-left: 60px; font-size: 20px;">
 
             </div><br><br>
 
- <div class="h"> <a href="add.php">Add Books</a> </div> 
-  <div class="h"> <a href="delete.php">Delete Books</a></div>
-  <div class="h"> <a href="#">Book Request</a></div>
-  <div class="h"> <a href="#">Issue Information</a></div>
-</div>
+        <div class="h"><a href="dashboard.php">Dashboard</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="#">Books request</a></div>
+        <div class="h"><a href="">Issue Books</a></div>
+        <div class="h"><a href="books.php">Books Information</a></div>
+        <div class="h"><a href="addBooks.php">Add Books</a></div>
+    </div>
 
 <div id="main">
-  <span style="font-size:30px;cursor:pointer; color: black;" onclick="openNav()">&#9776; open</span>
+  <span style="font-size:30px;cursor:pointer; color: black;" onclick="openNav()">&#9776; nav</span>
   <div class="container" style="text-align: center;">
     <h2 style="color:black; font-family: Lucida Console; text-align: center"><b>Add New Books</b></h2>
     
-    <form class="book" action="" method="post">
+    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="" method="post">
         
-        <input type="text" name="bid" class="form-control" placeholder="Book id" required=""><br>
+        <input type="number" name="bid" class="form-control" placeholder="Book ID" required=""><br>
         <input type="text" name="name" class="form-control" placeholder="Book Name" required=""><br>
         <input type="text" name="authors" class="form-control" placeholder="Authors Name" required=""><br>
         
-        <input type="text" name="status" class="form-control" placeholder="Status" required=""><br>
-        <input type="text" name="quantity" class="form-control" placeholder="Quantity" required=""><br>
+        <!-- <input type="text" name="status" class="form-control" placeholder="Status" required=""><br> -->
+        <select class="form-control" style="color: grey;" name="status" placeholder="Status" id="status" required="">
+						<option  value="">Status</option>
+						<option value="available">Available</option>
+						<option value="not availlable">Not Available</option>
+        </select><br>
+        <input type="number" name="quantity" class="form-control" placeholder="Quantity" required=""><br>
         <input type="text" name="department" class="form-control" placeholder="Department" required=""><br>
-
-        <button style="text-align: center;" class="btn btn-default" type="submit" name="submit">ADD</button>
+        
+        <button style="text-align: center;" class="btn btn-dark" type="submit" name="submit">ADD</button>
+       
+        
+       
     </form>
+    
   </div>
-<?php
+  
+  <?php
     if(isset($_POST['submit']))
     {
       if(isset($_SESSION['login_user']))
       {
-        mysqli_query($db,"INSERT INTO books VALUES ('$_POST[bid]', '$_POST[name]', '$_POST[authors]', '$_POST[status]', '$_POST[quantity]', '$_POST[department]') ;");
+        $res="INSERT INTO books VALUES ('$_POST[bid]', '$_POST[name]', '$_POST[authors]', '$_POST[status]', '$_POST[quantity]', '$_POST[department]') ;";
+        mysqli_query($db,$res);
         ?>
           <script type="text/javascript">
-            alert("Book Added Successfully.");
+            window.location="addbooks.php"
           </script>
 
         <?php

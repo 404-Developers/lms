@@ -23,7 +23,7 @@ include "nav.php";
 
     <div class="box2">
         <h1 style="text-align: center; font-size: 35px;font-family: Lucida Console;">Library Management System</h1>
-        <h1 style="text-align: center; font-size: 25px;">User Registration Form.......</h1><br>
+        <h1 style="text-align: center; font-size: 25px;">User Registration Form</h1><br>
       <form name="Registration" action="" method="post">
         
         <div class="login">
