@@ -75,6 +75,7 @@ body {
   <div class="h"><a href="n.php">Issue Books</a></div>
   <div class="h"><a href="books.php">Books Information</a></div>
   <div class="h"><a href="addBooks.php">Add Books</a></div>
+  <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
 
 </div>
 

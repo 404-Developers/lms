@@ -134,9 +134,10 @@ function closeNav() {
 		                                <th style="width: 5%">BookID</th>
 		                                <th style="width: 20%">BookName</th>
 		                                <th style="width: 20%">Author</th>
-		                                <th style="width: 20%">status</th>
-		                                <th class="no-sort" style="width: 20%">Quantity</th>
-		                                <th style="width: 15%;">Department</th>
+		                                <th style="width: 10%">status</th>
+		                                <th class="no-sort" style="width: 5%">Quantity</th>
+                                        <th style="width: 15%;">Department</th>
+                                        <th class="no-sort" style="width: 25%; text-align: center;">Action</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody id="hospital_list">
@@ -148,9 +149,11 @@ function closeNav() {
 											echo "<td>".$row["bid"]."</td>";
 											echo "<td>".$row["name"]."</td>";
 											echo "<td>".$row["author"]."</td>";
-											echo "<td>".$row["status"]."</td>";
-                      echo "<td>".$row["quantity"]."</td>";
-                      echo "<td>".$row["department"]."</td>";
+                                            echo "<td>".$row["status"]."</td>";
+                                            echo "<td>".$row["quantity"]."</td>";
+                                            echo "<td>".$row["department"]."</td>";
+                                            echo "<td class='p-2'><a href='deletedata?id=".$row["bid"]."' style='width: 48%' class='btn btn-danger btn-sm float-left' >Delete<br></a>";
+											echo "<a href='updatedata?id=".$row["bid"]."' style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Update</a></td>";
 										
 											
 											echo "</tr>";
