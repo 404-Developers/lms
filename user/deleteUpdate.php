@@ -152,10 +152,10 @@ function closeNav() {
                       echo "<td>".$row["status"]."</td>";
                       echo "<td>".$row["quantity"]."</td>";
                       echo "<td>".$row["department"]."</td>";
-                      echo "<td class='p-2'><a href='deletedata?id=".$row["bid"]."' style='width: 48%' name='delete' class='btn btn-danger btn-sm float-left' >Delete<br></a>";
+                      echo "<td class='p-2'><a href='deletedata.php?bid=".$row["bid"]."' style='width: 48%' name='delete' class='btn btn-danger btn-sm float-left' >Delete<br></a>";
 											echo "<a href='updatedata?id=".$row["bid"]."' style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Update</a></td>";
 										
-											
+										
 											echo "</tr>";
 											# code...
 										}
@@ -183,30 +183,7 @@ function closeNav() {
 		    </div>
 		    <!-- /.row -->
     </div>
-<?php
-    if(isset($_POST['delete']))
-		{
-			if(isset($_SESSION['login_user']))
-			{
-				mysqli_query($db,"DELETE from books where bid = '$_POST[bid]'; ");
-				?>
-					<script type="text/javascript">
-						alert("Delete Successful.");
-					</script>
-				<?php
-			}
-			else
-			{
-							?>
-					<script type="text/javascript">
-						alert("Please Login First.");
-					</script>
-				<?php
-			}
-		}
-		
 
-	?>
     <script>
 		  $(function () {
 		    
