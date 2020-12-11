@@ -67,7 +67,7 @@
       ?>
         <script type="text/javascript">
           // alert("The username already exist.");
-          window.location="dashboard.php"
+          window.location="dashboardUser.php"
         </script>
       <?php
      }

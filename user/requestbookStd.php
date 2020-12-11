@@ -88,14 +88,8 @@
       <body>
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="h"><a href="dashboard.php">Dashboard</a></div>
-        <div class="h"><a href="student.php">StudentInformation</a></div>
-        <div class="h"><a href="#">Books request</a></div>
-        <div class="h"><a href="#">Issue Books</a></div>
-        <div class="h"><a href="books.php">Books Information</a></div>
-        <div class="h"><a href="addBooks.php">Add Books</a></div>
-        <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
-        
+        <div class="h"><a href="dashboardUser.php">Dashboard</a></div>
+        <div class="h"><a href="requestbookStd.php">Books request</a></div>
       </div>
 
 <div id="main">
@@ -131,13 +125,13 @@ function closeNav() {
 		                    <table id="employee_data" class="table table-bordered table-striped table-hover">
 		                        <thead>
 		                            <tr>
-		                                <th style="width: 5%">BookID</th>
-		                                <th style="width: 20%">BookName</th>
+                                    <th style="width: 5%">BookID</th>
+		                                <th style="width: 25%">BookName</th>
 		                                <th style="width: 20%">Author</th>
 		                                <th style="width: 10%">status</th>
 		                                <th class="no-sort" style="width: 5%">Quantity</th>
-                                    <th style="width: 15%;">Department</th>
-                                    <th class="no-sort" style="width: 25%; text-align: center;">Action</th>
+                                    <th style="width: 20%;">Department</th>
+                                    <th class="no-sort" style="width: 15%; text-align: center;">Action</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody id="hospital_list">
@@ -149,12 +143,10 @@ function closeNav() {
 											echo "<td>".$row["bid"]."</td>";
 											echo "<td>".$row["name"]."</td>";
 											echo "<td>".$row["author"]."</td>";
-                      echo "<td>".$row["status"]."</td>";
+											echo "<td>".$row["status"]."</td>";
                       echo "<td>".$row["quantity"]."</td>";
                       echo "<td>".$row["department"]."</td>";
-                      echo "<td class='p-2'><a href='deletedata?id=".$row["bid"]."' style='width: 48%' name='delete' class='btn btn-danger btn-sm float-left' >Delete<br></a>";
-											echo "<a href='updatedata?id=".$row["bid"]."' style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Update</a></td>";
-										
+                      echo "<td class='text-center'><a href='deletedata?id=".$row["bid"]."' style='width: 48%' class='btn btn-danger btn-sm ' >Request<br></a></td>";
 											
 											echo "</tr>";
 											# code...
@@ -168,8 +160,8 @@ function closeNav() {
 		                                <th>BookName</th>
 		                                <th>AuthorName</th>
 		                                <th>Status</th>
-                                    <th>Quantity</th>
-                                    <th>Department</th>
+		                                <th>Quantity</th>
+		                                <th>Department</th>
 		                                <th style="text-align: center;">Action</th>
 		                            </tr>
 		                        </tfoot>
@@ -183,30 +175,6 @@ function closeNav() {
 		    </div>
 		    <!-- /.row -->
     </div>
-<?php
-    if(isset($_POST['delete']))
-		{
-			if(isset($_SESSION['login_user']))
-			{
-				mysqli_query($db,"DELETE from books where bid = '$_POST[bid]'; ");
-				?>
-					<script type="text/javascript">
-						alert("Delete Successful.");
-					</script>
-				<?php
-			}
-			else
-			{
-							?>
-					<script type="text/javascript">
-						alert("Please Login First.");
-					</script>
-				<?php
-			}
-		}
-		
-
-	?>
     <script>
 		  $(function () {
 		    
@@ -221,13 +189,9 @@ function closeNav() {
 		    })
 		  })
     </script>
-
-
     
 </div>
-      
-
- </body>  
+      </body>  
  </html>  
  <!-- <script>  
  $(document).ready(function(){  
