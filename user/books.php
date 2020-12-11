@@ -120,7 +120,7 @@ function closeNav() {
         <br /><br />  
         <div class="container-fluid">
 		    <div class="row">
-		        <div class="col-12">
+		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
 		                <div class="card-header bg-info">
 		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">List Of Books</h3>

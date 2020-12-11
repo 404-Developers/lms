@@ -2,7 +2,7 @@
 
 include "conn.php"; // Using database connection file here
 
-$bid = $_GET['bid']; // get id through query string
+$bid = $_GET['id']; // get book id through query string
 
 $del = mysqli_query($db,"delete from books where bid = '$bid'"); // delete query
 
