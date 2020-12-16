@@ -1,8 +1,18 @@
-<?php
-  include "conn.php";
-  include "navUser.php";
-  
-?>
+<?php  
+ include "conn.php";
+ 
+ include "navUser.php";
+ 
+ 
+ $bid=$_GET['id'];
+ $name=$_GET['bn'];
+ 
+ 
+
+ 
+ $query = mysqli_query($db,"select * from books where bid = '$bid'"); 
+ 
+ ?>  
 
 <!DOCTYPE html>
 <html style="background-color: #033740;">
@@ -28,23 +38,24 @@
 
 
 </head>
-<body>  
+<body> 
+
 <div class="container" style="text-align: center;">
-    <h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;"><b>Upadate Details</b></h2>
+    <h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;"><b>Upadate Details BookID=<?php echo $bid; ?></b></h2>
     
-    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="" method="post">
+    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="" method="get">
         
         <!-- <input type="number" name="bid" class="form-control" placeholder="Book ID" required=""><br> -->
-        <input type="text" name="name" class="form-control" placeholder="Book Name" required=""><br>
-        <input type="text" name="authors" class="form-control" placeholder="Authors Name" required=""><br>
+        <input type="text" name="name" class="form-control" placeholder="Book Name" value="<?php echo $name; ?>"><br>
+        <input type="text" name="authors" class="form-control" placeholder="Authors Name"><br>
         <!-- <input type="text" name="status" class="form-control" placeholder="Status" required=""><br> -->
-        <select class="form-control" style="color: grey;" name="status" placeholder="Status" id="status" required="">
+        <select class="form-control" style="color: grey;" name="status" placeholder="Status" id="status">
 						<option  value="">Status</option>
 						<option value="available">Available</option>
 						<option value="not availlable">Not Available</option>
         </select><br>
-        <input type="number" name="quantity" class="form-control" placeholder="Quantity" required=""><br>
-        <input type="text" name="department" class="form-control" placeholder="Department" required=""><br>
+        <input type="number" name="quantity" class="form-control" placeholder="Quantity" ><br>
+        <input type="text" name="department" class="form-control" placeholder="Department" ><br>
 
         <div class="form-group row">
             <button type="submit" class="btn btn-success col-3 m-1 ml-3" name="update" value="update">Update</button>
@@ -100,3 +111,5 @@ function closeNav() {
 </script>
 
 </body>
+
+</html>

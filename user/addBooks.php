@@ -149,7 +149,8 @@
         mysqli_query($db,$res);
         ?>
           <script type="text/javascript">
-            window.location="addbooks.php"
+            alert("added successfully.");
+            window.location="addbooks.php" 
           </script>
 
         <?php
@@ -181,3 +182,4 @@ function closeNav() {
 </script>
 
 </body>
+</html>

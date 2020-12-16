@@ -140,7 +140,7 @@ function closeNav() {
                                     <th class="no-sort" style="width: 25%; text-align: center;">Action</th>
 		                            </tr>
 		                        </thead>
-		                        <tbody id="hospital_list">
+		                        <tbody id="book_list">
 		                        	<!-- Use foreach loop to feed data from the database -->
 		                        	<?php
                   while($row = mysqli_fetch_array($result))  
@@ -153,7 +153,10 @@ function closeNav() {
                       echo "<td>".$row["quantity"]."</td>";
                       echo "<td>".$row["department"]."</td>";
                       echo "<td class='p-2'><a href='deletedata.php?id=".$row["bid"]."' style='width: 48%' name='delete' class='btn btn-danger btn-sm float-left' >Delete<br></a>";
-											echo "<a href='updatedata.php?id=".$row["bid"]."' style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Update</a></td>";
+                      echo "<a href='updatedata.php?id=".$row["bid"]."
+                      &bn=".$row["name"]."
+                      &an=".$row["author"]."
+                      ' style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Update</a></td>";
 										
 										
 											echo "</tr>";
