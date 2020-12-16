@@ -52,7 +52,7 @@ while($row = mysqli_fetch_array($result))
 <div class="container" style=" text-align: center; margin-top:-40px; padding-right: 60px">
     <h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;"><b>Upadate Details BookID=<?php echo $bid; ?></b></h2>
     
-    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="" method="get">
+    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="updatemodel.php" method="get">
         
         <div class="form-group">
 					<label>Book Name</label>
@@ -91,7 +91,7 @@ while($row = mysqli_fetch_array($result))
 					<input type="text" name="department" class="form-control" placeholder="Department" value="<?php  echo  $department; ?>" >
         </div>
         <div class="form-group row">
-            <button type="submit" class="btn btn-success col-3 m-1 ml-3" name="update" value="update">Update</button>
+            <button type="submit" class="btn btn-success col-3 m-1 ml-3" name="update" value="update" action="" >Update</button>
             <a href="books.php" class="btn btn-dark m-1">View updated books</a> 
         </div>
         
@@ -103,45 +103,8 @@ while($row = mysqli_fetch_array($result))
     
 </div>
   
-  <?php
-    if(isset($_POST['submit']))
-    {
-      if(isset($_SESSION['login_user']))
-      {
-        $res="INSERT INTO books VALUES ('$_POST[bid]', '$_POST[name]', '$_POST[authors]', '$_POST[status]', '$_POST[quantity]', '$_POST[department]') ;";
-        mysqli_query($db,$res);
-        ?>
-          <script type="text/javascript">
-            window.location="addbooks.php"
-          </script>
+  
 
-        <?php
-
-      }
-      else
-      {
-        ?>
-          <script type="text/javascript">
-            alert("You need to login first.");
-          </script>
-        <?php
-      }
-    }
-?>
-
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-  document.body.style.backgroundColor = "#024629";
-}
-</script>
 
 </body>
 
