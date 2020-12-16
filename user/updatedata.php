@@ -49,7 +49,7 @@ while($row = mysqli_fetch_array($result))
 </head>
 <body> 
 
-<div class="container" style="text-align: center;">
+<div class="container" style=" text-align: center; margin-top:-40px; padding-right: 60px">
     <h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;"><b>Upadate Details BookID=<?php echo $bid; ?></b></h2>
     
     <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="" method="get">
