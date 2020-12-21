@@ -100,7 +100,7 @@
 
 <div id="main">
  
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; nav</span>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; NAV</span>
 <!-- </div> -->
 
 <script>

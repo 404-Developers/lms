@@ -37,21 +37,7 @@ include "nav.php";
 
 <body>
 	<div class="wrapper">
-		<!-- <header>
-		<div class="logo">
-			<img src="../images/logo.jpg">
-			<h1 style="color: white;  font-size: medium;">LIBRARY MANAGEMENT SYSTEM</h1>
-		</div>
-			<nav>
-				<ul>
-					<li><a href="index.php">HOME</a></li>
-					<li><a href="books.php">BOOKS</a></li>
-					<li><a href="stdLogin.php">USER-LOGIN</a></li>
-					<li><a href="lib.php">LIBRARIAN</a></li>
-					<li><a href="feedback.php">FEEDBACK</a></li>
-				</ul>
-			</nav>
-		</header> -->
+		
 		<section>
 		<div class="sec_img">
 			<br><br><br>
