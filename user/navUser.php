@@ -51,7 +51,8 @@ session_start();
       <img src="images/logo.jpg">
       <h1 style="color: white; font-size: medium;">LIBRARY MANAGEMENT SYSTEM</h1>
       <!-- <h1 style="color: white; font-size: 25px;word-spacing: 10px; line-height: 80px;margin-top: 20px;">ONLINE LIBRARY MANAGEMENT SYSTEM</h1> -->
-    </div>
+    </div> 
+    
         
      
 </header>

@@ -122,7 +122,7 @@ function closeNav() {
 		                <!-- /.card-header -->
 		                <!-- /.card-body -->
 		                <div class="card-body">
-		                    <table id="employee_data" class="table table-bordered table-striped table-hover">
+		                    <table id="books_data" class="table table-bordered table-striped table-hover">
 		                        <thead>
 		                            <tr>
                                     <th style="width: 5%">BookID</th>
@@ -134,7 +134,7 @@ function closeNav() {
                                     <th class="no-sort" style="width: 15%; text-align: center;">Action</th>
 		                            </tr>
 		                        </thead>
-		                        <tbody id="hospital_list">
+		                        <tbody id="book_list">
 		                        	<!-- Use foreach loop to feed data from the database -->
 		                        	<?php
                   while($row = mysqli_fetch_array($result))  
@@ -146,7 +146,7 @@ function closeNav() {
 											echo "<td>".$row["status"]."</td>";
                       echo "<td>".$row["quantity"]."</td>";
                       echo "<td>".$row["department"]."</td>";
-                      echo "<td class='text-center'><a href='deletedata?id=".$row["bid"]."' style='width: 48%' class='btn btn-danger btn-sm ' >Request<br></a></td>";
+                      echo "<td class='text-center'><a href='request.php?id=".$row["bid"]."' style='width: 48%' class='btn btn-danger btn-sm ' >Request<br></a></td>";
 											
 											echo "</tr>";
 											# code...
@@ -178,7 +178,7 @@ function closeNav() {
     <script>
 		  $(function () {
 		    
-		    $('#employee_data').DataTable({
+		    $('#books_data').DataTable({
 		      'paging'      : true,
 		      'lengthChange': true,
 		      'searching'   : true,

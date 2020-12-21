@@ -1,11 +1,11 @@
 <?php  
- include "conn.php";
- 
- include "navUser.php";
- 
- 
- $query ="SELECT * FROM books ORDER BY bid DESC";  
- $result = mysqli_query($db, $query);  
+  include "conn.php";
+  
+  include "navUser.php";
+  
+  
+  $query ="SELECT * FROM books ORDER BY bid DESC";  
+  $result = mysqli_query($db, $query);  
  ?>  
  <!DOCTYPE html>  
  <html>  
