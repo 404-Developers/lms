@@ -1,6 +1,6 @@
 <?php
   include "conn.php";
-  include "navbar.php";
+  include "navUser.php";
 ?>
 <!DOCTYPE html>
 <html>

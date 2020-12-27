@@ -52,7 +52,7 @@ while($row = mysqli_fetch_array($result))
 <div class="container" style=" text-align: center; margin-top:-40px; padding-right: 60px">
     <h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;"><b>Upadate Details BookID=<?php echo $bid; ?></b></h2>
     
-    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="updatemodel.php" method="get">
+    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="updatemodel.php?id=$bid method="get">
         
         <div class="form-group">
 					<label>Book Name</label>
@@ -91,9 +91,10 @@ while($row = mysqli_fetch_array($result))
 					<input type="text" name="department" class="form-control" placeholder="Department" value="<?php  echo  $department; ?>" >
         </div>
         <div class="form-group row">
-            <button type="submit" class="btn btn-success col-3 m-1 ml-3" name="update" value="update" action="" >Update</button>
+            <button type="submit" class="btn btn-success col-3 m-1 ml-3" name="update" value="update">Update</button>
             <a href="books.php" class="btn btn-dark m-1">View updated books</a> 
         </div>
+       
         
         <!-- <button style="text-align: center;" class="btn btn-dark" type="submit" name="submit">ADD</button> -->
        
@@ -104,6 +105,7 @@ while($row = mysqli_fetch_array($result))
 </div>
   
   
+
 
 
 </body>
