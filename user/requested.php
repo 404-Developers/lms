@@ -3,12 +3,13 @@
  
  include "navUser.php";
  
+ $query ="SELECT * FROM issue_book
+          WHERE username='$_SESSION[login_user]';";  
+ $result = mysqli_query($db, $query);  
  
- $bid=$_GET['id'];
-  
  ?>  
  <!DOCTYPE html>  
- <html  style="background-color: #033740;">  
+ <html>  
       <head>  
           <title></title>  
           <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +27,6 @@
   body {
     font-family: "Lato", sans-serif;
     transition: background-color .5s;
-	background-color: #033740;
   }
 
   .sidenav {
@@ -82,31 +82,21 @@
     width: 300px;
     height:50px ;
     /* background-color:#17a2b8; */
-	background-color: #00544c;
+    background-color: #00544c;
 
   }
- 	.form-control
-	{
-	background-color: #080707;
-	color: white;
-	height: 40px;
-	}
-	label{
-		color: grey;
-	}
 </style>
       </head>  
       <body>
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="h"><a href="dashboardUser.php">Dashboard</a></div>
-		<div class="h"><a href="requestbookStd.php">Books</a></div>
+        <div class="h"><a href="requestbookStd.php">Books</a></div>
         <div class="h"><a href="requested.php">Requested Books</a></div>
         <div class="h"><a href="issue.php">Borrowed books Information</a></div>
-		
       </div>
 
-<div id="main"  style="background-color: #033740;">
+<div id="main">
  
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; nav</span>
 <!-- </div> -->
@@ -125,50 +115,78 @@ function closeNav() {
 }
 </script>
       
-		<br /><br />  
-		
-	<div class="container" style=" text-align: center; margin-top:-40px; padding-right: 60px">
-	<h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;">Requeste of Book</h2>
-		<div class="srch">
-			<br>
-			<form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" method="post" action="" name="form1">
-				<div class="form-group">
-					<label>Username</label>
-					<input type="text" class="form-control" name="username" value="<?php echo $_SESSION['login_user']; ?>" required >
-				</div>
-				<div class="form-group">
-					<label>Book Id</label>
-					<input type="text" name="bid" class="form-control" value="<?php echo $bid; ?>" required="">
-				</div>
-				<div class="form-group text-center">
-					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Submit</button>
-					
-				</div>
-       
-				
-				
-				
-			</form>
-		</div>
-
-
-		<?php
-		if(isset($_POST['submit']))
-		{
-			mysqli_query($db,"INSERT INTO issue_book(username,bid)
-							  VALUES('$_SESSION[login_user]', '$_POST[bid]');");
-		?>
-		<script type="text/javascript">
-			window.location="requested.php"
-		</script>
-		<?php
-
-		}
-		?>
-	</div>
-	
+        <br /><br />  
+        <div class="container-fluid">
+		    <div class="row">
+		        <div class="col-12" style="margin-top: -30px;">
+		            <div class="card mt-4">
+		                
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Requested Book</h3>
+		                </div>
+		                <!-- /.card-header -->
+		                <!-- /.card-body -->
+		                <div class="card-body">
+		                    <table id="books_data" class="table table-bordered table-striped table-hover">
+		                        <thead>
+		                            <tr>
+                                    <th style="width: 5%" class="no-sort">BookID</th>
+                                    <th style="width: 25%" class="no-sort">Issue Date</th>
+                                    <th style="width: 25%">Retrn Date</th>
+                                    <th style="width: 25%; text-align: center;" class="no-sort">Approve Status</th>        
+		                            </tr>
+		                        </thead>
+		                        <tbody id="book_list">
+		                        	<!-- Use foreach loop to feed data from the database -->
+		                        	<?php
+                  while($row = mysqli_fetch_array($result))  
+                  {
+											echo "<tr>";
+											echo "<td>".$row["bid"]."</td>";
+											echo "<td>".$row["issue"]."</td>";
+											echo "<td>".$row["returns"]."</td>";
+											echo "<td>".$row["approve"]."</td>";
+                     
+											
+											echo "</tr>";
+											# code...
+										}
+									?>
+			                                                   
+		                        </tbody>
+		                        <tfoot>
+		                            <tr>
+		                                <th>BookID</th>
+		                                <th>Issue Date</th>
+		                                <th>Return Date</th>
+		                                <th style="text-align: center;">Approve Status</th>
+		                                
+		                            </tr>
+		                        </tfoot>
+		                    </table>
+		                
+		            </div>
+		            <!-- /.card -->
+		        </div>
+		        <!-- /.col -->
+		    </div>
+		    <!-- /.row -->
+    </div>
+    <script>
+		  $(function () {
+		    
+		    $('#books_data').DataTable({
+		      'paging'      : true,
+		      'lengthChange': true,
+		      'searching'   : true,
+		      'ordering'    : true,
+		      'info'        : true,
+		      'autoWidth'   : false,
+		      "columnDefs": [{ targets: 'no-sort', orderable: false }]
+		    })
+		  })
+    </script>
     
 </div>
-</body>  
-</html>  
+      </body>  
+ </html>  
  

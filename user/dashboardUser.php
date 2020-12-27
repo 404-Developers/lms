@@ -62,7 +62,8 @@ body {
   color: white;
   width: 300px;
   height:50px ;
-  background-color:#17a2b8;
+  /* background-color:#17a2b8; */
+  background-color: #00544c;
 }
 </style>
 </head>
@@ -70,8 +71,9 @@ body {
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="h"><a href="dashboardUser.php">Dashboard</a></div>
-  <div class="h"><a href="requestbookStd.php">Books request</a></div>
-
+  <div class="h"><a href="requestbookStd.php">Books</a></div>
+  <div class="h"><a href="requested.php">Requested Books</a></div>
+	<div class="h"><a href="issue.php">Borrowed Books Information</a></div>
 
 </div>
 
