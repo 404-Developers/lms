@@ -115,7 +115,19 @@ function closeNav() {
 }
 </script>
       
-        <br /><br />  
+        <br /><br /> 
+        <?php
+        if(mysqli_num_rows($result)==0)
+        {
+            echo "<h1><b>";
+            echo "There's no pending request.";
+            echo "</h1></b>";
+        }
+        
+        
+        
+        ?>
+
         <div class="container-fluid">
 		    <div class="row">
 		        <div class="col-12" style="margin-top: -30px;">
@@ -136,8 +148,11 @@ function closeNav() {
 		                            </tr>
 		                        </thead>
 		                        <tbody id="book_list">
+                                   
 		                        	<!-- Use foreach loop to feed data from the database -->
-		                        	<?php
+                                    <?php
+                                    
+
                   while($row = mysqli_fetch_array($result))  
                   {
 											echo "<tr>";

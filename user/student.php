@@ -90,7 +90,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="h"><a href="dashboard.php">Dashboard</a></div>
         <div class="h"><a href="student.php">StudentInformation</a></div>
-        <div class="h"><a href="#">Books request</a></div>
+        <div class="h"><a href="requestLib.php">Books request</a></div>
         <div class="h"><a href="#">Issue Books</a></div>
         <div class="h"><a href="books.php">Books Information</a></div>
         <div class="h"><a href="addBooks.php">Add Books</a></div>
@@ -131,12 +131,12 @@ function closeNav() {
 		                    <table id="employee_data" class="table table-bordered table-striped table-hover">
 		                        <thead>
 		                            <tr>
-		                                <th style="width: 5%">FirstName</th>
-		                                <th style="width: 20%">LastName</th>
+		                                <th style="width: 20%">FirstName</th>
+		                                <th class="no-sort" style="width: 20%">LastName</th>
 		                                <th style="width: 20%">UserName</th>
 		                               
-		                                <th class="no-sort" style="width: 20%">Email</th>
-		                                <th style="width: 15%;">Contact</th>
+		                                <th class="no-sort" style="width: 25%">Email</th>
+		                                <th class="no-sort" style="width:15%;">Contact</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody id="student_list">
@@ -149,8 +149,8 @@ function closeNav() {
 											echo "<td>".$row["last"]."</td>";
 											echo "<td>".$row["username"]."</td>";
 											
-                                            echo "<td>".$row["email"]."</td>";
-                                            echo "<td>".$row["phone"]."</td>";
+                      echo "<td>".$row["email"]."</td>";
+                      echo "<td>".$row["phone"]."</td>";
 										
 											
 											echo "</tr>";
