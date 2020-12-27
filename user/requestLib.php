@@ -3,8 +3,12 @@
  
  include "navUser.php";
  
- $query ="SELECT * FROM issue_book
-          WHERE username='$_SESSION[login_user]';";  
+ $query ="SELECT student.username,student.email,books.bid,name,author,status 
+          from student INNER JOIN issue_book 
+          on student.username=issue_book.username 
+          INNER JOIN books on books.bid=issue_book.bid
+           ";  
+        //    WHERE issue_book.approve=''
  $result = mysqli_query($db, $query);  
  
  ?>  
@@ -64,6 +68,10 @@
     margin-left: 50px;
   }
 
+  .container-fluid{
+      color: #17a2b8;
+  }
+
  
 
 
@@ -81,8 +89,8 @@
     color: white;
     width: 300px;
     height:50px ;
-    /* background-color:#17a2b8; */
-    background-color: #00544c;
+    background-color:#17a2b8;
+    /* background-color: #00544c; */
 
   }
 </style>
@@ -140,7 +148,7 @@ function closeNav() {
 		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
 		                
-		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Requested Book</h3>
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Requeste of Book</h3>
 		                </div>
 		                <!-- /.card-header -->
 		                <!-- /.card-body -->
@@ -148,10 +156,14 @@ function closeNav() {
 		                    <table id="books_data" class="table table-bordered table-striped table-hover">
 		                        <thead>
 		                            <tr>
-                                    <th style="width: 5%" class="no-sort">BookID</th>
-                                    <th style="width: 25%" class="no-sort">Issue Date</th>
-                                    <th style="width: 25%">Retrn Date</th>
-                                    <th style="width: 25%; text-align: center;" class="no-sort">Approve Status</th>        
+                                    <th style="width: 15%" class="no-sort">User Name</th>
+                                    <th style="width: 15%" class="no-sort">User Email</th>
+                                    <th style="width: 5%">Book ID</th>
+                                    <th style="width: 15%" class="no-sort">Book Name</th>
+                                    <th style="width: 10%">Status</th>
+                                    <th style="width: 15%" class="no-sort">Action</th>
+                                    
+                                           
 		                            </tr>
 		                        </thead>
 		                        <tbody id="book_list">
@@ -162,14 +174,19 @@ function closeNav() {
 
                   while($row = mysqli_fetch_array($result))  
                   {
-											echo "<tr>";
+                                            echo "<tr>";
+                                            echo "<td>".$row["username"]."</td>";
+                                            echo "<td>".$row["email"]."</td>";
 											echo "<td>".$row["bid"]."</td>";
-											echo "<td>".$row["issue"]."</td>";
-											echo "<td>".$row["returns"]."</td>";
-											echo "<td>".$row["approve"]."</td>";
+											echo "<td>".$row["name"]."</td>";
+                                            echo "<td>".$row["status"]."</td>";
+                                            
+											echo "<td class='p-2'><a href='deletedata.php?id=".$row["bid"]."' style='width: 48%' name='delete' class='btn btn-danger btn-sm float-left' >Denied<br></a>";
+                                            echo "<a href='approve.php?id=".$row["bid"]."&name=".$row["username"]."' style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Approve</a></td>";
+											
+											
                      
 											
-											echo "</tr>";
 											# code...
 										}
 									?>
@@ -177,10 +194,13 @@ function closeNav() {
 		                        </tbody>
 		                        <tfoot>
 		                            <tr>
-		                                <th>BookID</th>
-		                                <th>Issue Date</th>
-		                                <th>Return Date</th>
-		                                <th style="text-align: center;">Approve Status</th>
+                                        <th>User Name</th>
+		                                <th>User Email</th>
+		                                <th>Book ID</th>
+		                                <th >Book Name</th>
+		                                <th>Author</th>
+		                                <th>Status</th>
+		                                
 		                                
 		                            </tr>
 		                        </tfoot>

@@ -64,7 +64,10 @@
     margin-left: 50px;
   }
 
- 
+ .container-fluid
+ {
+     color: #00544c;
+ }
 
 
 
@@ -116,19 +119,20 @@ function closeNav() {
 </script>
       
         <br /><br /> 
-        <?php
-        if(mysqli_num_rows($result)==0)
-        {
-            echo "<h1><b>";
-            echo "There's no pending request.";
-            echo "</h1></b>";
-        }
-        
-        
-        
-        ?>
+       
 
         <div class="container-fluid">
+            <?php
+            if(mysqli_num_rows($result)==0)
+            {
+                echo "<h1><b>";
+                echo "There's no pending request.";
+                echo "</h1></b>";
+            }
+            else
+            {
+            
+            ?>
 		    <div class="row">
 		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
@@ -200,8 +204,11 @@ function closeNav() {
 		    })
 		  })
     </script>
+            <?php
+            }
+            ?>
     
 </div>
-      </body>  
- </html>  
+</body>  
+</html>  
  

@@ -119,7 +119,7 @@
     
     <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="" method="post">
         
-        <input type="number" name="bid" class="form-control" placeholder="Book ID" required=""><br>
+        <!-- <input type="number" name="bid" class="form-control" placeholder="Book ID" required=""><br> -->
         <input type="text" name="name" class="form-control" placeholder="Book Name" required=""><br>
         <input type="text" name="authors" class="form-control" placeholder="Authors Name" required=""><br>
         
@@ -145,7 +145,7 @@
     {
       if(isset($_SESSION['login_user']))
       {
-        $res="INSERT INTO books VALUES ('$_POST[bid]', '$_POST[name]', '$_POST[authors]', '$_POST[status]', '$_POST[quantity]', '$_POST[department]') ;";
+        $res="INSERT INTO books VALUES (null, '$_POST[name]', '$_POST[authors]', '$_POST[status]', '$_POST[quantity]', '$_POST[department]') ;";
         mysqli_query($db,$res);
         ?>
           <script type="text/javascript">
