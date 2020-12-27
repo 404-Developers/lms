@@ -5,6 +5,7 @@
  
  
  $bid=$_GET['id'];
+ $username=$_GET['name'];
   
  ?>  
  <!DOCTYPE html>  
@@ -108,7 +109,7 @@
         <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
       </div>
 
-<div id="main"  style="background-color: #033740;">
+<div id="main"  style="background-color: #033740; padding:0px;">
  
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; nav</span>
 <!-- </div> -->
@@ -128,19 +129,35 @@ function closeNav() {
 </script>
       
 		<br /><br />  
-		
-	<div class="container" style=" text-align: center; margin-top:-40px; padding-right: 60px">
-	<h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;">Approve Requestt</h2>
+	
+  <div class="container" style=" text-align: center; margin-top:-80px; padding-right: 80px">
+	<h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;">Approve Request</h2>
 		<div class="srch">
 			<br>
 			<form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" method="post" action="" name="form1">
 				<div class="form-group">
 					<label>Username</label>
-					<input type="text" class="form-control" name="username" value="<?php echo $_SESSION['login_user']; ?>" required >
+					<input type="" class="form-control" style="background-color:#213438; " name="username" value="<?php echo $username; ?>" readonly>
 				</div>
 				<div class="form-group">
 					<label>Book Id</label>
-					<input type="text" name="bid" class="form-control" value="<?php echo $bid; ?>" required="">
+					<input type="text" name="bid"  style="background-color:#213438;" class="form-control" value="<?php echo $bid; ?>" readonly>
+        </div>
+        
+				<div class="form-group">
+          <label>Issue Date</label>
+          <input type="date" name="issue" required=""  placeholder="yyyy-mm-dd" class="form-control">
+					
+        </div>
+        <div class="form-group">
+          <label>Return Date</label>
+          <input type="date" name="return" placeholder="yyyy-mm-dd" required="" class="form-control">
+				
+        </div>
+        <div class="form-group">
+          <label>Yse/No</label>
+          <input type="text" name="approve" placeholder="yes/no" required="" class="form-control">
+				
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Approve</button>
@@ -151,17 +168,23 @@ function closeNav() {
 				
 				
 			</form>
-		</div>
+    </div>
+    
+  
 
 
 		<?php
 		if(isset($_POST['submit']))
 		{
-			mysqli_query($db,"INSERT INTO issue_book(username,bid)
-							  VALUES('$_SESSION[login_user]', '$_POST[bid]');");
+      mysqli_query($db,"UPDATE  issue_book 
+                SET  approve =  '$_POST[approve]', issue =  '$_POST[issue]', returns =  '$_POST[return]' 
+                WHERE username='$username' and bid='$bid';");                      //query for requested book return and issue date
+
+      mysqli_query($db,"UPDATE books SET quantity = quantity-1 where bid='$bid' ;");
+      //when one book is approved quantity will be decrease by 1
 		?>
 		<script type="text/javascript">
-			window.location="requested.php"
+			window.location="requestLib.php"
 		</script>
 		<?php
 

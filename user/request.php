@@ -134,11 +134,11 @@ function closeNav() {
 			<form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" method="post" action="" name="form1">
 				<div class="form-group">
 					<label>Username</label>
-					<input type="text" class="form-control" name="username" value="<?php echo $_SESSION['login_user']; ?>" required >
+					<input type="text" class="form-control" name="username" value="<?php echo $_SESSION['login_user']; ?>" style="background-color:#213438;" readonly >
 				</div>
 				<div class="form-group">
 					<label>Book Id</label>
-					<input type="text" name="bid" class="form-control" value="<?php echo $bid; ?>" required="">
+					<input type="text" name="bid" class="form-control" value="<?php echo $bid; ?>"  readonly>
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Submit</button>
