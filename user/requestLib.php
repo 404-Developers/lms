@@ -7,8 +7,8 @@
           from student INNER JOIN issue_book 
           on student.username=issue_book.username 
           INNER JOIN books on books.bid=issue_book.bid
-           ";  
-        //    WHERE issue_book.approve=''
+          WHERE issue_book.approve=''";  
+        
  $result = mysqli_query($db, $query);  
  
  ?>  
@@ -133,7 +133,7 @@ function closeNav() {
             if(mysqli_num_rows($result)==0)
             {
                 echo "<h1><b>";
-                echo "There's no pending request.";
+                echo "There's no  request.";
                 echo "</h1></b>";
             }
             else{
@@ -181,8 +181,8 @@ function closeNav() {
 											echo "<td>".$row["name"]."</td>";
                                             echo "<td>".$row["status"]."</td>";
                                             
-											echo "<td class='p-2'><a href='deletedata.php?id=".$row["bid"]."' style='width: 48%' name='delete' class='btn btn-danger btn-sm float-left' >Denied<br></a>";
-                                            echo "<a href='approve.php?id=".$row["bid"]."&name=".$row["username"]."' style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Approve</a></td>";
+											echo "<td class='text-center' ><a href='approve.php?id=".$row["bid"]."&name=".$row["username"]."' style='width: 68%;' class='btn btn btn-primary btn-sm float-right' name='action'>Action</a></td>";
+                                            
 											
 											
                      
@@ -230,8 +230,9 @@ function closeNav() {
 		    })
 		  })
     </script>
+
+    
     
 </div>
-      </body>  
+</body>  
  </html>  
- 

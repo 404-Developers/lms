@@ -160,7 +160,7 @@ function closeNav() {
 				
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Approve</button>
+					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Confirm</button>
 					
 				</div>
        
@@ -182,8 +182,19 @@ function closeNav() {
 
       mysqli_query($db,"UPDATE books SET quantity = quantity-1 where bid='$bid' ;");
       //when one book is approved quantity will be decrease by 1
+
+      $res=mysqli_query($db,"SELECT quantity from books where bid='$bid");   //book is not available
+
+      while($row=mysqli_fetch_assoc($res))
+      {
+        if($row['quantity']==0)
+        {
+          mysqli_query($db,"UPDATE books SET status='notavailable' where bid='$bid';");
+        }
+      }
 		?>
-		<script type="text/javascript">
+    <script type="text/javascript">
+      alert("Updated successfully.");
 			window.location="requestLib.php"
 		</script>
 		<?php

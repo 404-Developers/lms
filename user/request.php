@@ -138,7 +138,7 @@ function closeNav() {
 				</div>
 				<div class="form-group">
 					<label>Book Id</label>
-					<input type="text" name="bid" class="form-control" value="<?php echo $bid; ?>"  readonly>
+					<input type="text" name="bid" class="form-control" value="<?php echo $bid; ?>" style="background-color:#213438;"   readonly>
 				</div>
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Submit</button>
@@ -155,8 +155,8 @@ function closeNav() {
 		<?php
 		if(isset($_POST['submit']))
 		{
-			mysqli_query($db,"INSERT INTO issue_book(username,bid)
-							  VALUES('$_SESSION[login_user]', '$_POST[bid]');");
+			mysqli_query($db,"INSERT INTO issue_book(username,bid,approve)
+							  VALUES('$_SESSION[login_user]', '$_POST[bid]',' ');");
 		?>
 		<script type="text/javascript">
 			window.location="requested.php"

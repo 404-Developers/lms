@@ -172,13 +172,13 @@
 
     mysqli_query($db,"UPDATE books SET quantity = quantity-1 where bid='$_SESSION[bid]' ;");
 
-    $res=mysqli_query($db,"SELECT quantity from books where bid='$_SESSION[bid];");
+    $res=mysqli_query($db,"SELECT quantity from books where bid='$bid");
 
     while($row=mysqli_fetch_assoc($res))
     {
       if($row['quantity']==0)
       {
-        mysqli_query($db,"UPDATE books SET status='not-available' where bid='$_SESSION[bid]';");
+        mysqli_query($db,"UPDATE books SET status='not-available' where bid='$bid';");
       }
     }
     ?>
