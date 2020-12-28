@@ -176,8 +176,9 @@ function closeNav() {
                       if($d > $row["returns"])
                       {
                         $c=$c+1; 
+                        $var='<p style="color:black; background-color:red;">EXPIRED</p>';
                         mysqli_query($db,"UPDATE issue_book
-                                          SET approve='Expired'
+                                          SET approve='$var'
                                           WHERE returns= '$row[returns]' and approve='yes'
                                           limit $c;");
                       }

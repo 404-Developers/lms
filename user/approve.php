@@ -184,15 +184,19 @@ function closeNav() {
       mysqli_query($db,"UPDATE books SET quantity = quantity-1 where bid='$bid' ;");
       //when one book is approved quantity will be decrease by 1
 
-      $res=mysqli_query($db,"SELECT quantity from books where bid='$bid");   //book is not available
+      $res=mysqli_query($db,"SELECT quantity from books where bid='$bid' ");   //book is not available
       
       while($row=mysqli_fetch_assoc($res))
       {
-        if($row['quantity']==0)
+        $q=$row['quantity'];
+        
+        if($q=='0')
         {
           mysqli_query($db,"UPDATE books SET status='notavailable' where bid='$bid';");
         }
       }
+      
+
 		?>
     <script type="text/javascript">
       alert("Updated successfully.");

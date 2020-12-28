@@ -162,7 +162,7 @@ function closeNav() {
                                     <th style="width: 15%" class="no-sort">User Name</th>
                                     <th style="width: 15%" class="no-sort">User Email</th>
                                     <th style="width: 5%">Book ID</th>
-                                    <th style="width: 10%" class="no-sort">Book Name</th>
+                                    <th style="width: 15%" class="no-sort">Book Name</th>
                                     <th style="width: 10%">Status</th>
                                     <th style="width: 15%" class="no-sort">Action</th>
                                     

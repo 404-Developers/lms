@@ -2,9 +2,15 @@
  include "conn.php";
  
  include "navUser.php";
- 
- $query ="SELECT * FROM issue_book
-          WHERE username='$_SESSION[login_user]';";  
+ $var='<p style="color:black; background-color:red;">EXPIRED</p>';
+ $query ="SELECT issue_book.bid,issue_book.returns,issue_book.approve,books.name,student.username,student.email
+          FROM books inner join issue_book
+          on issue_book.bid=books.bid
+          INNER JOIN  student
+          ON issue_book.username=student.username
+          WHERE issue_book.approve='$var'
+          ORDER BY issue_book.returns ASC
+           ;";  
  $result = mysqli_query($db, $query);  
  
  ?>  
@@ -67,7 +73,6 @@
  .container-fluid
  {
      color: #00544c;
-     text-align: center;
  }
 
 
@@ -75,7 +80,6 @@
   #main {
     transition: margin-left .5s;
     padding: 16px;
-    
   }
 
   @media screen and (max-height: 450px) {
@@ -95,10 +99,13 @@
       <body>
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="h"><a href="dashboardUser.php">Dashboard</a></div>
-        <div class="h"><a href="requestbookStd.php">Books</a></div>
-        <div class="h"><a href="requested.php">Requested Books</a></div>
-        <div class="h"><a href="issue.php">Borrowed books Information</a></div>
+        <div class="h"><a href="dashboard.php">Dashboard</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="requestLib.php">Books request</a></div>
+        <div class="h"><a href="issueLib.php">Issue Books</a></div>
+        <div class="h"><a href="books.php">Books Information</a></div>
+        <div class="h"><a href="addBooks.php">Add Books</a></div>
+        <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
       </div>
 
 <div id="main">
@@ -128,7 +135,7 @@ function closeNav() {
             if(mysqli_num_rows($result)==0)
             {
                 echo "<h1><b>";
-                echo "There's no pending request.";
+                echo "You are not issued books.";
                 echo "</h1></b>";
             }
             else
@@ -139,7 +146,7 @@ function closeNav() {
 		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
 		                
-		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Requested Book</h3>
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Expired Book List</h3>
 		                </div>
 		                <!-- /.card-header -->
 		                <!-- /.card-body -->
@@ -147,25 +154,34 @@ function closeNav() {
 		                    <table id="books_data" class="table table-bordered table-striped table-hover">
 		                        <thead>
 		                            <tr>
-                                    <th style="width: 10%" class="no-sort">BookID</th>
-                                    <th style="width: 20%" class="no-sort">Issue Date</th>
-                                    <th style="width: 20%">Retrn Date</th>
-                                    <th style="width: 10%; text-align: center;" class="no-sort">Approve Status</th>        
+                                    <th style="width: 5%; background-color:royalblue">BookID</th>
+                                    <th style="width: 25%; text-align: center; background-color:royalblue" class="no-sort">Book Name</th>
+                                    <th style="width: 25%; background-color:green;" class="no-sort ">UserName</th>
+                                    <th style="width: 25%; background-color:green;" class="no-sort">UserEmail </th>
+                                    <th style="width: 25%; background-color:red">Retrn Date</th>
+                                            
 		                            </tr>
 		                        </thead>
 		                        <tbody id="book_list">
                                    
 		                        	<!-- Use foreach loop to feed data from the database -->
                                     <?php
-                                    
+                                    $d=date("Y-m-d");
+                                    echo "TODAY ";
+                                    echo $d;
+                                   
 
                   while($row = mysqli_fetch_array($result))  
                   {
+                      
+                      
 											echo "<tr>";
-											echo "<td>".$row["bid"]."</td>";
-											echo "<td>".$row["issue"]."</td>";
+                                            echo "<td>".$row["bid"]."</td>";
+                                            echo "<td>".$row["name"]."</td>";
+                                            echo "<td>".$row["username"]."</td>";
+                                            echo "<td>".$row["email"]."</td>";
 											echo "<td>".$row["returns"]."</td>";
-											echo "<td>".$row["approve"]."</td>";
+                                            echo "<td>".$row["approve"]."</td>";
                      
 											
 											echo "</tr>";
@@ -176,10 +192,12 @@ function closeNav() {
 		                        </tbody>
 		                        <tfoot>
 		                            <tr>
-		                                <th>BookID</th>
-		                                <th>Issue Date</th>
-		                                <th>Return Date</th>
-		                                <th style="text-align: center;">Approve Status</th>
+                                    <th>BookID</th>
+                                    <th style="text-align: center;">Book Name</th>
+                                    <th>Username</th>
+                                    <th>User email</th>
+                                    <th>Return Date</th>
+		                               
 		                                
 		                            </tr>
 		                        </tfoot>

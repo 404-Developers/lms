@@ -144,6 +144,12 @@ function closeNav() {
 		                        	<?php
                   while($row = mysqli_fetch_array($result))  
                   {
+                    $q=$row['quantity'];
+                    echo $q;
+                    if ($q=='0')
+                    {
+                      mysqli_query($db,"UPDATE books SET status='notavailable' where bid=$row[bid];");
+                    }
 											echo "<tr>";
 											echo "<td>".$row["bid"]."</td>";
 											echo "<td>".$row["name"]."</td>";

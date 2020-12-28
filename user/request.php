@@ -155,6 +155,7 @@ function closeNav() {
 		<?php
 		if(isset($_POST['submit']))
 		{
+      
 			mysqli_query($db,"INSERT INTO issue_book(username,bid,approve)
 							  VALUES('$_SESSION[login_user]', '$_POST[bid]','pending');");
 		?>
