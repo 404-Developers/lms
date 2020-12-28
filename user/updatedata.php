@@ -52,7 +52,7 @@ while($row = mysqli_fetch_array($result))
 <div class="container" style=" text-align: center; margin-top:-40px; padding-right: 60px">
     <h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;"><b>Upadate Details BookID=<?php echo $bid; ?></b></h2>
     
-    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" action="updatemodel.php?id=$bid method="get">
+    <form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" method="post">
         
         <div class="form-group">
 					<label>Book Name</label>
@@ -62,21 +62,11 @@ while($row = mysqli_fetch_array($result))
 					<label> Author</label>
 				  <input type="text" name="authors" class="form-control" placeholder="Authors Name" value="<?php  echo $author ?>">
         </div>
-        <!-- <div class="form-group">
-          <label>Status</label>
-          <div class="form-inline">
-            <input type="text" name="status" class="form-control" placeholder="Status" style="margin-bottom: 12px;" value=""> 
-            <select class="form-control mb-3" name="status" id="status" style="margin: 5px;">
-              <option value=""></option>
-              <option value="available">Available</option>
-              <option value="not availlable">Not Available</option>
-            </select> 
-          </div>
-        </div> -->
+        
         <div class="form-group">
           <label>Status</label>
-            <select class="form-control mb-3" name="status" id="status">
-              <option value=""><?php  echo  $status; ?></option>
+            <select class="form-control mb-3" name="status" id="status"  >
+              <option value="<?php  echo $status; ?>"><?php  echo $status; ?></option>
               <option value="available">Available</option>
               <option value="not availlable">Not Available</option>
             </select> 
@@ -101,6 +91,27 @@ while($row = mysqli_fetch_array($result))
         
        
     </form>
+
+    <?php
+    	if(isset($_POST['update']))
+      {
+        mysqli_query($db,"UPDATE  books
+                  SET  name =  '$_POST[name]', author = '$_POST[authors]', status =  '$_POST[status]', 
+                  quantity =  '$_POST[quantity]' , department =  '$_POST[department]'
+                  WHERE bid='$bid';");                      //update query
+  
+       
+        
+      ?>
+      <script type="text/javascript">
+        alert("Updated successfully.");
+        window.location="deleteUpdate.php"
+      </script>
+      <?php
+  
+      }
+
+    ?>
     
 </div>
   

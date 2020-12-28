@@ -6,6 +6,7 @@
  
  $bid=$_GET['id'];
  $username=$_GET['name'];
+ $_SESSION['username']=$_GET['name'];
   
  ?>  
  <!DOCTYPE html>  

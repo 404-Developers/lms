@@ -101,7 +101,7 @@
         <div class="h"><a href="dashboard.php">Dashboard</a></div>
         <div class="h"><a href="student.php">StudentInformation</a></div>
         <div class="h"><a href="requestLib.php">Books request</a></div>
-        <div class="h"><a href="#">Issue Books</a></div>
+        <div class="h"><a href="issueLib.php">Issue Books</a></div>
         <div class="h"><a href="books.php">Books Information</a></div>
         <div class="h"><a href="addBooks.php">Add Books</a></div>
         <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
@@ -183,8 +183,7 @@ function closeNav() {
                                             
 											echo "<td class='text-center' ><a href='approve.php?id=".$row["bid"]."&name=".$row["username"]."' style='width: 68%;' class='btn btn btn-primary btn-sm float-right' name='action'>Action</a></td>";
                                             
-											
-											
+
                      
 											
 											# code...
@@ -231,7 +230,14 @@ function closeNav() {
 		  })
     </script>
 
-    
+    <?php
+    // if(isset($_POST['submit']))
+	// {
+	// 	$_SESSION['name']=$_POST['username'];
+	// 	$_SESSION['bid']=$_POST['bid'];
+    // }
+
+    ?>
     
 </div>
 </body>  
