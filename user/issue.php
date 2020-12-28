@@ -3,7 +3,9 @@
  
  include "navUser.php";
  
- $query ="SELECT * FROM issue_book
+ $query ="SELECT issue_book.bid,issue_book.returns,issue_book.issue,books.name
+          FROM issue_book inner join books
+          on issue_book.bid=books.bid
           WHERE username='$_SESSION[login_user]' and approve='yes' ;";  
  $result = mysqli_query($db, $query);  
  
@@ -126,7 +128,7 @@ function closeNav() {
             if(mysqli_num_rows($result)==0)
             {
                 echo "<h1><b>";
-                echo "There's no pending request.";
+                echo "You are not borrowed books.";
                 echo "</h1></b>";
             }
             else
@@ -146,9 +148,10 @@ function closeNav() {
 		                        <thead>
 		                            <tr>
                                     <th style="width: 5%" class="no-sort">BookID</th>
+                                    <th style="width: 25%; text-align: center;" class="no-sort">Book Name</th>
                                     <th style="width: 25%" class="no-sort">Issue Date</th>
                                     <th style="width: 25%">Retrn Date</th>
-                                    <th style="width: 25%; text-align: center;" class="no-sort">Approve Status</th>        
+                                            
 		                            </tr>
 		                        </thead>
 		                        <tbody id="book_list">
@@ -160,10 +163,11 @@ function closeNav() {
                   while($row = mysqli_fetch_array($result))  
                   {
 											echo "<tr>";
-											echo "<td>".$row["bid"]."</td>";
+                      echo "<td>".$row["bid"]."</td>";
+                      echo "<td>".$row["name"]."</td>";
 											echo "<td>".$row["issue"]."</td>";
 											echo "<td>".$row["returns"]."</td>";
-											echo "<td>".$row["approve"]."</td>";
+											
                      
 											
 											echo "</tr>";
@@ -174,10 +178,11 @@ function closeNav() {
 		                        </tbody>
 		                        <tfoot>
 		                            <tr>
-		                                <th>BookID</th>
+                                    <th>BookID</th>
+                                    <th style="text-align: center;">Book Name</th>
 		                                <th>Issue Date</th>
 		                                <th>Return Date</th>
-		                                <th style="text-align: center;">Approve Status</th>
+		                               
 		                                
 		                            </tr>
 		                        </tfoot>
