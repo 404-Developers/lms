@@ -8,7 +8,7 @@
           on issue_book.bid=books.bid
           INNER JOIN  student
           ON issue_book.username=student.username
-          WHERE approve='yes'
+          WHERE issue_book.approve='yes'
           ORDER BY issue_book.returns ASC
            ;";  
  $result = mysqli_query($db, $query);  
@@ -154,11 +154,11 @@ function closeNav() {
 		                    <table id="books_data" class="table table-bordered table-striped table-hover">
 		                        <thead>
 		                            <tr>
-                                    <th style="width: 5%">BookID</th>
-                                    <th style="width: 25%; text-align: center;" class="no-sort">Book Name</th>
-                                    <th style="width: 25%" class="no-sort">UserName</th>
-                                    <th style="width: 25%" class="no-sort">UserEmail </th>
-                                    <th style="width: 25%">Retrn Date</th>
+                                    <th style="width: 5%; background-color:royalblue">BookID</th>
+                                    <th style="width: 25%; text-align: center; background-color:royalblue" class="no-sort">Book Name</th>
+                                    <th style="width: 25%; background-color:green;" class="no-sort ">UserName</th>
+                                    <th style="width: 25%; background-color:green;" class="no-sort">UserEmail </th>
+                                    <th style="width: 25%; background-color:red">Retrn Date</th>
                                             
 		                            </tr>
 		                        </thead>
@@ -166,10 +166,22 @@ function closeNav() {
                                    
 		                        	<!-- Use foreach loop to feed data from the database -->
                                     <?php
-                                    
+                                    $d=date("Y-m-d");
+                                    echo "TODAY ";
+                                    echo $d;
+                                    $c=0;
 
                   while($row = mysqli_fetch_array($result))  
                   {
+                      if($d > $row["returns"])
+                      {
+                        $c=$c+1; 
+                        mysqli_query($db,"UPDATE issue_book
+                                          SET approve='Expired'
+                                          WHERE returns= '$row[returns]' and approve='yes'
+                                          limit $c;");
+                      }
+                      
 											echo "<tr>";
                                             echo "<td>".$row["bid"]."</td>";
                                             echo "<td>".$row["name"]."</td>";
