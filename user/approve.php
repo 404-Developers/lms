@@ -185,7 +185,7 @@ function closeNav() {
       //when one book is approved quantity will be decrease by 1
 
       $res=mysqli_query($db,"SELECT quantity from books where bid='$bid");   //book is not available
-
+      
       while($row=mysqli_fetch_assoc($res))
       {
         if($row['quantity']==0)

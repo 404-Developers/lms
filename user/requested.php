@@ -67,6 +67,7 @@
  .container-fluid
  {
      color: #00544c;
+     text-align: center;
  }
 
 
@@ -74,6 +75,7 @@
   #main {
     transition: margin-left .5s;
     padding: 16px;
+    
   }
 
   @media screen and (max-height: 450px) {

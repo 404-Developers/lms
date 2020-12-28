@@ -100,7 +100,7 @@
 
 <div id="main">
  
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; NAV</span>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; nav</span>
 <!-- </div> -->
 
 <script>
@@ -123,7 +123,7 @@ function closeNav() {
 		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
 		                <div class="card-header bg-info">
-		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Students Informations</h3>
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">List of Users</h3>
 		                </div>
 		                <!-- /.card-header -->
 		                <!-- /.card-body -->

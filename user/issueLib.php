@@ -1,193 +1,229 @@
-<?php
-  include "conn.php";
-  include "navUser.php";
-  // $bid=$_GET['id'];
-  // echo $bid;
-  // $name=$_GET['name'];
-  // echo $name;
+<?php  
+ include "conn.php";
  
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Approve Request</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<style type="text/css">
-
-		.srch
-		{
-			padding-left: 850px;
-
-		}
-		.form-control
-		{
-			width: 300px;
-			height: 45px;
-			background-color: black;
-			color: white;
-		}
-		
-		body {
-			background-image: url("images/1111.jpg");
-			background-repeat: no-repeat;
-  	font-family: "Lato", sans-serif;
-  	transition: background-color .5s;
-}
-
-.sidenav {
-  height: 100%;
-  margin-top: 50px;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #222;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: white;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-.img-circle
-{
-	margin-left: 20px;
-}
-.h:hover
-{
-	color:white;
-	width: 300px;
-	height: 50px;
-	background-color: #00544c;
-}
-.container
-{
-	height: 600px;
-	background-color: black;
-	opacity: .8;
-	color: white;
-}
-.Approve
-{
-  margin-left: 420px;
-}
-
-
-	</style>
-
-</head>
-<body>
-<!--_________________sidenav_______________-->
-	
-	<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-  			<div style="color: white; margin-left: 60px; font-size: 20px;">
-
-                <?php
-                if(isset($_SESSION['login_user']))
-
-                { 	echo "<img class='img-circle profile_img' height=120 width=120 src='images/".$_SESSION['pic']."'>";
-                    echo "</br></br>";
-
-                    echo "Welcome ".$_SESSION['login_user']; 
-                }
-                ?>
-            </div><br><br>
-
+ include "navUser.php";
  
-  <div class="h"> <a href="books.php">Books</a></div>
-  <div class="h"> <a href="request.php">Book Request</a></div>
-  <div class="h"> <a href="issue_info.php">Issue Information</a></div>
-  <div class="h"><a href="expired.php">Expired List</a></div>
-</div>
+ $query ="SELECT issue_book.bid,issue_book.returns,books.name,student.username,student.email
+          FROM books inner join issue_book
+          on issue_book.bid=books.bid
+          INNER JOIN  student
+          ON issue_book.username=student.username
+          WHERE approve='yes'
+          ORDER BY issue_book.returns ASC
+           ;";  
+ $result = mysqli_query($db, $query);  
+ 
+ ?>  
+ <!DOCTYPE html>  
+ <html>  
+      <head>  
+          <title></title>  
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+          <link rel="stylesheet" type="text/css" href="bootstrap/css/main.css">
+          <script src="bootstrap/js/jquery-3.5.1.js"></script>
+          <script src="bootstrap/js/main.js" ></script>
+          <script src="bootstrap/js/bootstrap.js"></script>
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+          <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+          <!-- <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
+          <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />   -->
+          <style>
+  body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+  }
+
+  .sidenav {
+    height: 100%;
+    margin-top: 90px;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:#222;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+ .container-fluid
+ {
+     color: #00544c;
+ }
+
+
+
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  .h:hover{
+    color: white;
+    width: 300px;
+    height:50px ;
+    /* background-color:#17a2b8; */
+    background-color: #00544c;
+
+  }
+</style>
+      </head>  
+      <body>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="h"><a href="dashboard.php">Dashboard</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="requestLib.php">Books request</a></div>
+        <div class="h"><a href="issueLib.php">Issue Books</a></div>
+        <div class="h"><a href="books.php">Books Information</a></div>
+        <div class="h"><a href="addBooks.php">Add Books</a></div>
+        <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
+      </div>
 
 <div id="main">
-  
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+ 
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; nav</span>
+<!-- </div> -->
 
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
 
-	<script>
-	function openNav() {
-	  document.getElementById("mySidenav").style.width = "300px";
-	  document.getElementById("main").style.marginLeft = "300px";
-	  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-	}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  document.body.style.backgroundColor = "white";
+}
+</script>
+      
+        <br /><br /> 
+       
 
-	function closeNav() {
-	  document.getElementById("mySidenav").style.width = "0";
-	  document.getElementById("main").style.marginLeft= "0";
-	  document.body.style.backgroundColor = "white";
-	}
-  </script>
-  <div class="container">
-    <br><h3 style="text-align: center;">Approve Request</h3><br><br>
+        <div class="container-fluid">
+            <?php
+            if(mysqli_num_rows($result)==0)
+            {
+                echo "<h1><b>";
+                echo "You are not issued books.";
+                echo "</h1></b>";
+            }
+            else
+            {
+            
+            ?>
+		    <div class="row">
+		        <div class="col-12" style="margin-top: -30px;">
+		            <div class="card mt-4">
+		                
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Issued Books</h3>
+		                </div>
+		                <!-- /.card-header -->
+		                <!-- /.card-body -->
+		                <div class="card-body">
+		                    <table id="books_data" class="table table-bordered table-striped table-hover">
+		                        <thead>
+		                            <tr>
+                                    <th style="width: 5%">BookID</th>
+                                    <th style="width: 25%; text-align: center;" class="no-sort">Book Name</th>
+                                    <th style="width: 25%" class="no-sort">UserName</th>
+                                    <th style="width: 25%" class="no-sort">UserEmail </th>
+                                    <th style="width: 25%">Retrn Date</th>
+                                            
+		                            </tr>
+		                        </thead>
+		                        <tbody id="book_list">
+                                   
+		                        	<!-- Use foreach loop to feed data from the database -->
+                                    <?php
+                                    
+
+                  while($row = mysqli_fetch_array($result))  
+                  {
+											echo "<tr>";
+                                            echo "<td>".$row["bid"]."</td>";
+                                            echo "<td>".$row["name"]."</td>";
+                                            echo "<td>".$row["username"]."</td>";
+                                            echo "<td>".$row["email"]."</td>";
+											echo "<td>".$row["returns"]."</td>";
+											
+                     
+											
+											echo "</tr>";
+											# code...
+										}
+									?>
+			                                                   
+		                        </tbody>
+		                        <tfoot>
+		                            <tr>
+                                    <th>BookID</th>
+                                    <th style="text-align: center;">Book Name</th>
+                                    <th>Username</th>
+                                    <th>User email</th>
+                                    <th>Return Date</th>
+		                               
+		                                
+		                            </tr>
+		                        </tfoot>
+		                    </table>
+		                
+		            </div>
+		            <!-- /.card -->
+		        </div>
+		        <!-- /.col -->
+		    </div>
+		    <!-- /.row -->
+    </div>
+    <script>
+		  $(function () {
+		    
+		    $('#books_data').DataTable({
+		      'paging'      : true,
+		      'lengthChange': true,
+		      'searching'   : true,
+		      'ordering'    : true,
+		      'info'        : true,
+		      'autoWidth'   : false,
+		      "columnDefs": [{ targets: 'no-sort', orderable: false }]
+		    })
+		  })
+    </script>
+            <?php
+            }
+            ?>
     
-    <form class="Approve" action="" method="post">
-        <input class="form-control" type="text" name="approve" placeholder="Yes or No" required=""><br>
-
-        <input type="text" name="issue" placeholder="Issue Date yyyy-mm-dd" required="" class="form-control"><br>
-
-        <input type="text" name="return" placeholder="Return Date yyyy-mm-dd" required="" class="form-control"><br>
-        <button class="btn btn-default" type="submit" name="submit">Approve</button>
-    </form>
-  
-  </div>
 </div>
-
-<?php
-  if(isset($_POST['submit']))
-  {
-    mysqli_query($db,"UPDATE  `issue_book` SET  `approve` =  '$_POST[approve]', `issue` =  '$_POST[issue]', `return` =  '$_POST[return]' WHERE username='$_SESSION[name]' and bid='$_SESSION[bid]';");
-
-    mysqli_query($db,"UPDATE books SET quantity = quantity-1 where bid='$_SESSION[bid]' ;");
-
-    $res=mysqli_query($db,"SELECT quantity from books where bid='$bid");
-
-    while($row=mysqli_fetch_assoc($res))
-    {
-      if($row['quantity']==0)
-      {
-        mysqli_query($db,"UPDATE books SET status='not-available' where bid='$bid';");
-      }
-    }
-    ?>
-      <script type="text/javascript">
-        alert("Updated successfully.");
-        window.location="request.php"
-      </script>
-    <?php
-  }
-?>
-</body>
-</html>
+</body>  
+</html>  
+ 
