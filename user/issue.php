@@ -3,9 +3,10 @@
  
  include "navUser.php";
  
- 
- $query ="SELECT * FROM books ORDER BY bid DESC";  
+ $query ="SELECT * FROM issue_book
+          WHERE username='$_SESSION[login_user]' and approve='yes' ;";  
  $result = mysqli_query($db, $query);  
+ 
  ?>  
  <!DOCTYPE html>  
  <html>  
@@ -63,7 +64,10 @@
     margin-left: 50px;
   }
 
- 
+ .container-fluid
+ {
+     color: #00544c;
+ }
 
 
 
@@ -114,13 +118,26 @@ function closeNav() {
 }
 </script>
       
-        <br /><br />  
+        <br /><br /> 
+       
+
         <div class="container-fluid">
+            <?php
+            if(mysqli_num_rows($result)==0)
+            {
+                echo "<h1><b>";
+                echo "There's no pending request.";
+                echo "</h1></b>";
+            }
+            else
+            {
+            
+            ?>
 		    <div class="row">
 		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
 		                
-		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Borrowed Book</h3>
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Borrowed Books</h3>
 		                </div>
 		                <!-- /.card-header -->
 		                <!-- /.card-body -->
@@ -135,15 +152,18 @@ function closeNav() {
 		                            </tr>
 		                        </thead>
 		                        <tbody id="book_list">
+                                   
 		                        	<!-- Use foreach loop to feed data from the database -->
-		                        	<?php
+                                    <?php
+                                    
+
                   while($row = mysqli_fetch_array($result))  
                   {
 											echo "<tr>";
 											echo "<td>".$row["bid"]."</td>";
-											echo "<td>".$row["name"]."</td>";
-											echo "<td>".$row["author"]."</td>";
-											echo "<td>".$row["status"]."</td>";
+											echo "<td>".$row["issue"]."</td>";
+											echo "<td>".$row["returns"]."</td>";
+											echo "<td>".$row["approve"]."</td>";
                      
 											
 											echo "</tr>";
@@ -157,7 +177,7 @@ function closeNav() {
 		                                <th>BookID</th>
 		                                <th>Issue Date</th>
 		                                <th>Return Date</th>
-		                                <th>Approve Status</th>
+		                                <th style="text-align: center;">Approve Status</th>
 		                                
 		                            </tr>
 		                        </tfoot>
@@ -184,8 +204,11 @@ function closeNav() {
 		    })
 		  })
     </script>
+            <?php
+            }
+            ?>
     
 </div>
-      </body>  
- </html>  
+</body>  
+</html>  
  

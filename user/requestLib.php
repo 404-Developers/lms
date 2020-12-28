@@ -7,7 +7,7 @@
           from student INNER JOIN issue_book 
           on student.username=issue_book.username 
           INNER JOIN books on books.bid=issue_book.bid
-          WHERE issue_book.approve=''";  
+          WHERE issue_book.approve='pending'";  
         
  $result = mysqli_query($db, $query);  
  
