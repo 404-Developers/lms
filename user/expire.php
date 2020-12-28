@@ -3,12 +3,13 @@
  
  include "navUser.php";
  $var='<p style="color:black; background-color:red;">EXPIRED</p>';
+ $ret='<p style="color:black; background-color:green;">RETURNED</p>';
  $query ="SELECT issue_book.bid,issue_book.returns,issue_book.approve,books.name,student.username,student.email
           FROM books inner join issue_book
           on issue_book.bid=books.bid
           INNER JOIN  student
           ON issue_book.username=student.username
-          WHERE issue_book.approve='$var'
+          WHERE issue_book.approve='$var' or issue_book.approve='$ret'
           ORDER BY issue_book.returns ASC
            ;";  
  $result = mysqli_query($db, $query);  
@@ -100,12 +101,13 @@
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="h"><a href="dashboard.php">Dashboard</a></div>
-        <div class="h"><a href="student.php">StudentInformation</a></div>
-        <div class="h"><a href="requestLib.php">Books request</a></div>
-        <div class="h"><a href="issueLib.php">Issue Books</a></div>
         <div class="h"><a href="books.php">Books Information</a></div>
         <div class="h"><a href="addBooks.php">Add Books</a></div>
         <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="requestLib.php">Books request</a></div>
+        <div class="h"><a href="issueLib.php">Issue Books</a></div>
+        <div class="h"><a href="expire.php">Expired Books</a></div>
       </div>
 
 <div id="main">
@@ -155,11 +157,13 @@ function closeNav() {
 		                        <thead>
 		                            <tr>
                                     <th style="width: 5%; background-color:royalblue">BookID</th>
-                                    <th style="width: 25%; text-align: center; background-color:royalblue" class="no-sort">Book Name</th>
-                                    <th style="width: 25%; background-color:green;" class="no-sort ">UserName</th>
-                                    <th style="width: 25%; background-color:green;" class="no-sort">UserEmail </th>
-                                    <th style="width: 25%; background-color:red">Retrn Date</th>
-                                            
+                                    <th style="width: 20%; text-align: center; background-color:royalblue">Book Name</th>
+                                    <th style="width: 20%; background-color:green;" class="no-sort ">UserName</th>
+                                    <th style="width: 20%; background-color:green;" class="no-sort">UserEmail </th>
+                                    <th style="width: 15%; background-color:red">Return Date</th>
+                                    <th style="width: 5%; background-color:red" >Status</th>   
+                                    <th style="width: 15%; background-color:red" class="no-sort">Action</th>   
+		                           
 		                            </tr>
 		                        </thead>
 		                        <tbody id="book_list">
@@ -182,6 +186,8 @@ function closeNav() {
                                             echo "<td>".$row["email"]."</td>";
 											echo "<td>".$row["returns"]."</td>";
                                             echo "<td>".$row["approve"]."</td>";
+                                            echo "<td class='p-2'><a href='message.php?id=".$row["bid"]."&name=".$row["email"]."' style='width: 48%' name='message' class='btn btn-danger btn-sm float-left' >Message<br></a>";
+                                            echo "<a href='return.php?id=".$row["bid"]."&name=".$row["username"]."'  style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Return</a></td>";
                      
 											
 											echo "</tr>";
@@ -197,6 +203,8 @@ function closeNav() {
                                     <th>Username</th>
                                     <th>User email</th>
                                     <th>Return Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
 		                               
 		                                
 		                            </tr>
