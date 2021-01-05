@@ -137,7 +137,7 @@ function closeNav() {
             if(mysqli_num_rows($result)==0)
             {
                 echo "<h1><b>";
-                echo "There's no  request.";
+                echo "There's no requested Book.";
                 echo "</h1></b>";
             }
             else{
@@ -152,7 +152,7 @@ function closeNav() {
 		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
 		                
-		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Requeste of Book</h3>
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Requeste of Books</h3>
 		                </div>
 		                <!-- /.card-header -->
 		                <!-- /.card-body -->

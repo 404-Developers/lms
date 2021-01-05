@@ -2,9 +2,9 @@
  include "conn.php";
  
  include "navUser.php";
- 
+ $ret='<p style="color:black; background-color:green;">RETURNED</p>';
  $query ="SELECT * FROM issue_book
-          WHERE username='$_SESSION[login_user]';";  
+          WHERE username='$_SESSION[login_user]' AND approve !='$ret';";  
  $result = mysqli_query($db, $query);  
  
  ?>  

@@ -137,7 +137,7 @@ function closeNav() {
             if(mysqli_num_rows($result)==0)
             {
                 echo "<h1><b>";
-                echo "You are not issued books.";
+                echo "There is not exist expired books.";
                 echo "</h1></b>";
             }
             else
@@ -186,7 +186,7 @@ function closeNav() {
                                             echo "<td>".$row["email"]."</td>";
 											echo "<td>".$row["returns"]."</td>";
                                             echo "<td>".$row["approve"]."</td>";
-                                            echo "<td class='p-2'><a href='message.php?id=".$row["bid"]."&name=".$row["email"]."' style='width: 48%' name='message' class='btn btn-danger btn-sm float-left' >Message<br></a>";
+                                            echo "<td class='p-2'><a href='message.php?id=".$row["bid"]."&name=".$row["email"]."&return=".$row["returns"]."' style='width: 48%' name='message' class='btn btn-danger btn-sm float-left' >Message<br></a>";
                                             echo "<a href='return.php?id=".$row["bid"]."&name=".$row["username"]."'  style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Return</a></td>";
                      
 											
