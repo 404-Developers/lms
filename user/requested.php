@@ -2,9 +2,9 @@
  include "conn.php";
  
  include "navUser.php";
- 
+ $ret='<p style="color:black; background-color:green;">RETURNED</p>';
  $query ="SELECT * FROM issue_book
-          WHERE username='$_SESSION[login_user]';";  
+          WHERE username='$_SESSION[login_user]' AND approve !='$ret';";  
  $result = mysqli_query($db, $query);  
  
  ?>  
@@ -147,10 +147,10 @@ function closeNav() {
 		                    <table id="books_data" class="table table-bordered table-striped table-hover">
 		                        <thead>
 		                            <tr>
-                                    <th style="width: 5%" class="no-sort">BookID</th>
-                                    <th style="width: 25%" class="no-sort">Issue Date</th>
-                                    <th style="width: 25%">Retrn Date</th>
-                                    <th style="width: 25%; text-align: center;" class="no-sort">Approve Status</th>        
+                                    <th style="width: 10%" class="no-sort">BookID</th>
+                                    <th style="width: 20%" class="no-sort">Issue Date</th>
+                                    <th style="width: 20%">Retrn Date</th>
+                                    <th style="width: 10%; text-align: center;" class="no-sort">Approve Status</th>        
 		                            </tr>
 		                        </thead>
 		                        <tbody id="book_list">

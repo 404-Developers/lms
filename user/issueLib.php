@@ -100,17 +100,18 @@
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="h"><a href="dashboard.php">Dashboard</a></div>
-        <div class="h"><a href="student.php">StudentInformation</a></div>
-        <div class="h"><a href="requestLib.php">Books request</a></div>
-        <div class="h"><a href="issueLib.php">Issue Books</a></div>
         <div class="h"><a href="books.php">Books Information</a></div>
         <div class="h"><a href="addBooks.php">Add Books</a></div>
         <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="requestLib.php">Books request</a></div>
+        <div class="h"><a href="issueLib.php">Issue Books</a></div>
+        <div class="h"><a href="expire.php">Expired Books</a></div>
       </div>
 
 <div id="main">
  
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; nav</span>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Nav</span>
 <!-- </div> -->
 
 <script>
@@ -176,8 +177,9 @@ function closeNav() {
                       if($d > $row["returns"])
                       {
                         $c=$c+1; 
+                        $var='<p style="color:black; background-color:red;">EXPIRED</p>';
                         mysqli_query($db,"UPDATE issue_book
-                                          SET approve='Expired'
+                                          SET approve='$var'
                                           WHERE returns= '$row[returns]' and approve='yes'
                                           limit $c;");
                       }

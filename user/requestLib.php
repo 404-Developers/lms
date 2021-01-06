@@ -102,12 +102,13 @@
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="h"><a href="dashboard.php">Dashboard</a></div>
-        <div class="h"><a href="student.php">StudentInformation</a></div>
-        <div class="h"><a href="requestLib.php">Books request</a></div>
-        <div class="h"><a href="issueLib.php">Issue Books</a></div>
         <div class="h"><a href="books.php">Books Information</a></div>
         <div class="h"><a href="addBooks.php">Add Books</a></div>
         <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="requestLib.php">Books request</a></div>
+        <div class="h"><a href="issueLib.php">Issue Books</a></div>
+        <div class="h"><a href="expire.php">Expired Books</a></div>
       </div>
 
 <div id="main">
@@ -136,7 +137,7 @@ function closeNav() {
             if(mysqli_num_rows($result)==0)
             {
                 echo "<h1><b>";
-                echo "There's no  request.";
+                echo "There's no requested Book.";
                 echo "</h1></b>";
             }
             else{
@@ -151,7 +152,7 @@ function closeNav() {
 		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
 		                
-		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Requeste of Book</h3>
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Requeste of Books</h3>
 		                </div>
 		                <!-- /.card-header -->
 		                <!-- /.card-body -->
@@ -162,7 +163,7 @@ function closeNav() {
                                     <th style="width: 15%" class="no-sort">User Name</th>
                                     <th style="width: 15%" class="no-sort">User Email</th>
                                     <th style="width: 5%">Book ID</th>
-                                    <th style="width: 10%" class="no-sort">Book Name</th>
+                                    <th style="width: 15%" class="no-sort">Book Name</th>
                                     <th style="width: 10%">Status</th>
                                     <th style="width: 15%" class="no-sort">Action</th>
                                     

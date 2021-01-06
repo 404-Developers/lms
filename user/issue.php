@@ -2,11 +2,11 @@
  include "conn.php";
  
  include "navUser.php";
- 
+ $var='<p style="color:black; background-color:red;">EXPIRED</p>';
  $query ="SELECT issue_book.bid,issue_book.returns,issue_book.issue,books.name
           FROM issue_book inner join books
           on issue_book.bid=books.bid
-          WHERE username='$_SESSION[login_user]' and approve='yes' ;";  
+          WHERE username='$_SESSION[login_user]' and (approve='yes' or approve='$var') ;";  
  $result = mysqli_query($db, $query);  
  
  ?>  

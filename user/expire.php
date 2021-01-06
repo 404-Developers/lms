@@ -2,10 +2,18 @@
  include "conn.php";
  
  include "navUser.php";
- 
- 
- $query ="SELECT * FROM books ORDER BY bid DESC";  
+ $var='<p style="color:black; background-color:red;">EXPIRED</p>';
+ $ret='<p style="color:black; background-color:green;">RETURNED</p>';
+ $query ="SELECT issue_book.bid,issue_book.returns,issue_book.approve,books.name,student.username,student.email
+          FROM books inner join issue_book
+          on issue_book.bid=books.bid
+          INNER JOIN  student
+          ON issue_book.username=student.username
+          WHERE issue_book.approve='$var' or issue_book.approve='$ret'
+          ORDER BY issue_book.returns ASC
+           ;";  
  $result = mysqli_query($db, $query);  
+ 
  ?>  
  <!DOCTYPE html>  
  <html>  
@@ -63,7 +71,10 @@
     margin-left: 50px;
   }
 
- 
+ .container-fluid
+ {
+     color: #00544c;
+ }
 
 
 
@@ -80,7 +91,8 @@
     color: white;
     width: 300px;
     height:50px ;
-    background-color:#17a2b8;
+    /* background-color:#17a2b8; */
+    background-color: #00544c;
 
   }
 </style>
@@ -96,7 +108,6 @@
         <div class="h"><a href="requestLib.php">Books request</a></div>
         <div class="h"><a href="issueLib.php">Issue Books</a></div>
         <div class="h"><a href="expire.php">Expired Books</a></div>
-        
       </div>
 
 <div id="main">
@@ -118,43 +129,67 @@ function closeNav() {
 }
 </script>
       
-        <br /><br />  
+        <br /><br /> 
+       
+
         <div class="container-fluid">
+            <?php
+            if(mysqli_num_rows($result)==0)
+            {
+                echo "<h1><b>";
+                echo "There is not exist expired books.";
+                echo "</h1></b>";
+            }
+            else
+            {
+            
+            ?>
 		    <div class="row">
 		        <div class="col-12" style="margin-top: -30px;">
 		            <div class="card mt-4">
-		                <div class="card-header bg-info">
-		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">List Of Books</h3>
+		                
+		                    <h3 class="card-title m-0 p-0" style="text-align: center; background-color:grey;">Expired Book List</h3>
 		                </div>
 		                <!-- /.card-header -->
 		                <!-- /.card-body -->
 		                <div class="card-body">
-		                    <table id="employee_data" class="table table-bordered table-striped table-hover">
+		                    <table id="books_data" class="table table-bordered table-striped table-hover">
 		                        <thead>
 		                            <tr>
-		                                <th style="width: 5%">BookID</th>
-		                                <th style="width: 20%">BookName</th>
-		                                <th style="width: 20%">Author</th>
-		                                <th style="width: 10%">status</th>
-		                                <th class="no-sort" style="width: 5%">Quantity</th>
-                                    <th style="width: 15%;">Department</th>
-                                    <th class="no-sort" style="width: 25%; text-align: center;">Action</th>
+                                    <th style="width: 5%; background-color:royalblue">BookID</th>
+                                    <th style="width: 20%; text-align: center; background-color:royalblue">Book Name</th>
+                                    <th style="width: 20%; background-color:green;" class="no-sort ">UserName</th>
+                                    <th style="width: 20%; background-color:green;" class="no-sort">UserEmail </th>
+                                    <th style="width: 15%; background-color:red">Return Date</th>
+                                    <th style="width: 5%; background-color:red" >Status</th>   
+                                    <th style="width: 15%; background-color:red" class="no-sort">Action</th>   
+		                           
 		                            </tr>
 		                        </thead>
 		                        <tbody id="book_list">
+                                   
 		                        	<!-- Use foreach loop to feed data from the database -->
-		                        	<?php
+                                    <?php
+                                    $d=date("Y-m-d");
+                                    echo "TODAY ";
+                                    echo $d;
+                                   
+
                   while($row = mysqli_fetch_array($result))  
                   {
+                      
+                      
 											echo "<tr>";
-											echo "<td>".$row["bid"]."</td>";
-											echo "<td>".$row["name"]."</td>";
-											echo "<td>".$row["author"]."</td>";
-                      echo "<td>".$row["status"]."</td>";
-                      echo "<td>".$row["quantity"]."</td>";
-                      echo "<td>".$row["department"]."</td>";
-                      echo "<td class='p-2'><a href='deletedata.php?id=".$row["bid"]."' style='width: 48%' name='delete' class='btn btn-danger btn-sm float-left' >Delete<br></a>";
-                      echo "<a href='updatedata.php?id=".$row["bid"]."' style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Update</a></td>";
+                                            echo "<td>".$row["bid"]."</td>";
+                                            echo "<td>".$row["name"]."</td>";
+                                            echo "<td>".$row["username"]."</td>";
+                                            echo "<td>".$row["email"]."</td>";
+											echo "<td>".$row["returns"]."</td>";
+                                            echo "<td>".$row["approve"]."</td>";
+                                            echo "<td class='p-2'><a href='message.php?id=".$row["bid"]."&name=".$row["email"]."&return=".$row["returns"]."' style='width: 48%' name='message' class='btn btn-danger btn-sm float-left' >Message<br></a>";
+                                            echo "<a href='return.php?id=".$row["bid"]."&name=".$row["username"]."'  style='width: 48%' class='btn btn btn-primary btn-sm float-right'>Return</a></td>";
+                     
+											
 											echo "</tr>";
 											# code...
 										}
@@ -163,18 +198,19 @@ function closeNav() {
 		                        </tbody>
 		                        <tfoot>
 		                            <tr>
-		                                <th>BookID</th>
-		                                <th>BookName</th>
-		                                <th>AuthorName</th>
-		                                <th>Status</th>
-                                    <th>Quantity</th>
-                                    <th>Department</th>
-		                                <th style="text-align: center;">Action</th>
+                                    <th>BookID</th>
+                                    <th style="text-align: center;">Book Name</th>
+                                    <th>Username</th>
+                                    <th>User email</th>
+                                    <th>Return Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+		                               
+		                                
 		                            </tr>
 		                        </tfoot>
 		                    </table>
-		                </div>
-		                <!-- /.card-body -->
+		                
 		            </div>
 		            <!-- /.card -->
 		        </div>
@@ -182,11 +218,10 @@ function closeNav() {
 		    </div>
 		    <!-- /.row -->
     </div>
-
     <script>
 		  $(function () {
 		    
-		    $('#employee_data').DataTable({
+		    $('#books_data').DataTable({
 		      'paging'      : true,
 		      'lengthChange': true,
 		      'searching'   : true,
@@ -197,16 +232,11 @@ function closeNav() {
 		    })
 		  })
     </script>
-
-
+            <?php
+            }
+            ?>
     
 </div>
-      
-
- </body>  
- </html>  
- <!-- <script>  
- $(document).ready(function(){  
-      $('#employee_data').DataTable();  
- });  
- </script>   -->
+</body>  
+</html>  
+ 

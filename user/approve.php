@@ -5,6 +5,8 @@
  
  
  $bid=$_GET['id'];
+ $username=$_GET['name'];
+ $_SESSION['username']=$_GET['name'];
   
  ?>  
  <!DOCTYPE html>  
@@ -81,8 +83,8 @@
     color: white;
     width: 300px;
     height:50px ;
-    /* background-color:#17a2b8; */
-	background-color: #00544c;
+    background-color:#17a2b8;
+	/* background-color: #00544c; */
 
   }
  	.form-control
@@ -99,14 +101,16 @@
       <body>
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="h"><a href="dashboardUser.php">Dashboard</a></div>
-		<div class="h"><a href="requestbookStd.php">Books</a></div>
-        <div class="h"><a href="requested.php">Requested Books</a></div>
-        <div class="h"><a href="issue.php">Borrowed books Information</a></div>
-		
+        <div class="h"><a href="dashboard.php">Dashboard</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="requestLib.php">Books request</a></div>
+        <div class="h"><a href="issueLib.php">Issue Books</a></div>
+        <div class="h"><a href="books.php">Books Information</a></div>
+        <div class="h"><a href="addBooks.php">Add Books</a></div>
+        <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
       </div>
 
-<div id="main"  style="background-color: #033740;">
+<div id="main"  style="background-color: #033740; padding:0px;">
  
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; nav</span>
 <!-- </div> -->
@@ -126,22 +130,38 @@ function closeNav() {
 </script>
       
 		<br /><br />  
-		
-	<div class="container" style=" text-align: center; margin-top:-40px; padding-right: 60px">
-	<h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;">Requeste of Book</h2>
+	
+  <div class="container" style=" text-align: center; margin-top:-80px; padding-right: 80px">
+	<h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;">Approve Request</h2>
 		<div class="srch">
 			<br>
 			<form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" method="post" action="" name="form1">
 				<div class="form-group">
 					<label>Username</label>
-					<input type="text" class="form-control" name="username" value="<?php echo $_SESSION['login_user']; ?>" style="background-color:#213438;" readonly >
+					<input type="" class="form-control" style="background-color:#213438; " name="username" value="<?php echo $username; ?>" readonly>
 				</div>
 				<div class="form-group">
 					<label>Book Id</label>
-					<input type="text" name="bid" class="form-control" value="<?php echo $bid; ?>" style="background-color:#213438;"   readonly>
+					<input type="text" name="bid"  style="background-color:#213438;" class="form-control" value="<?php echo $bid; ?>" readonly>
+        </div>
+        
+				<div class="form-group">
+          <label>Issue Date</label>
+          <input type="date" name="issue" required=""  placeholder="yyyy-mm-dd" class="form-control">
+					
+        </div>
+        <div class="form-group">
+          <label>Return Date</label>
+          <input type="date" name="return" placeholder="yyyy-mm-dd" required="" class="form-control">
+				
+        </div>
+        <div class="form-group">
+          <label>Yse/No</label>
+          <input type="text" name="approve" placeholder="yes/no" required="" class="form-control">
+				
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Submit</button>
+					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Confirm</button>
 					
 				</div>
        
@@ -149,18 +169,38 @@ function closeNav() {
 				
 				
 			</form>
-		</div>
+    </div>
+    
+  
 
 
 		<?php
 		if(isset($_POST['submit']))
 		{
+      mysqli_query($db,"UPDATE  issue_book 
+                SET  approve =  '$_POST[approve]', issue =  '$_POST[issue]', returns =  '$_POST[return]' 
+                WHERE username='$username' and bid='$bid';");                      //query for requested book return and issue date
+
+      mysqli_query($db,"UPDATE books SET quantity = quantity-1 where bid='$bid' ;");
+      //when one book is approved quantity will be decrease by 1
+
+      $res=mysqli_query($db,"SELECT quantity from books where bid='$bid' ");   //book is not available
       
-			mysqli_query($db,"INSERT INTO issue_book(username,bid,approve)
-							  VALUES('$_SESSION[login_user]', '$_POST[bid]','pending');");
+      while($row=mysqli_fetch_assoc($res))
+      {
+        $q=$row['quantity'];
+        
+        if($q=='0')
+        {
+          mysqli_query($db,"UPDATE books SET status='notavailable' where bid='$bid';");
+        }
+      }
+      
+
 		?>
-		<script type="text/javascript">
-			window.location="requested.php"
+    <script type="text/javascript">
+      alert("Updated successfully.");
+			window.location="requestLib.php"
 		</script>
 		<?php
 

@@ -5,6 +5,10 @@
  
  
  $bid=$_GET['id'];
+
+ $username=$_GET['name'];
+
+ 
   
  ?>  
  <!DOCTYPE html>  
@@ -99,10 +103,14 @@
       <body>
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="h"><a href="dashboardUser.php">Dashboard</a></div>
-		<div class="h"><a href="requestbookStd.php">Books</a></div>
-        <div class="h"><a href="requested.php">Requested Books</a></div>
-        <div class="h"><a href="issue.php">Borrowed books Information</a></div>
+        <div class="h"><a href="dashboard.php">Dashboard</a></div>
+        <div class="h"><a href="books.php">Books Information</a></div>
+        <div class="h"><a href="addBooks.php">Add Books</a></div>
+        <div class="h"><a href="deleteUpdate.php">Delete and Updates</a></div>
+        <div class="h"><a href="student.php">StudentInformation</a></div>
+        <div class="h"><a href="requestLib.php">Books request</a></div>
+        <div class="h"><a href="issueLib.php">Issue Books</a></div>
+        <div class="h"><a href="expire.php">Expired Books</a></div>
 		
       </div>
 
@@ -128,20 +136,20 @@ function closeNav() {
 		<br /><br />  
 		
 	<div class="container" style=" text-align: center; margin-top:-40px; padding-right: 60px">
-	<h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;">Requeste of Book</h2>
+	<h2 style="color:black; font-family: Lucida Console; text-align: center; margin-top: 40px;">Confirm Return</h2>
 		<div class="srch">
 			<br>
 			<form class="col-5 border border-secondary rounded" style="margin:auto; padding:10px; width:400px;" method="post" action="" name="form1">
 				<div class="form-group">
 					<label>Username</label>
-					<input type="text" class="form-control" name="username" value="<?php echo $_SESSION['login_user']; ?>" style="background-color:#213438;" readonly >
+					<input type="text" class="form-control" name="username" value="<?php echo $username; ?>" style="background-color:#213438;" readonly >
 				</div>
 				<div class="form-group">
 					<label>Book Id</label>
 					<input type="text" name="bid" class="form-control" value="<?php echo $bid; ?>" style="background-color:#213438;"   readonly>
 				</div>
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Submit</button>
+					<button type="submit" class="btn btn-success col-3 m-1 ml-3" name="submit" value="submit">Confirm</button>
 					
 				</div>
        
@@ -155,12 +163,17 @@ function closeNav() {
 		<?php
 		if(isset($_POST['submit']))
 		{
+            $ret='<p style="color:black; background-color:green;">RETURNED</p>';
+
+            mysqli_query($db,"UPDATE issue_book
+                            SET approve='$ret'
+                            WHERE username='$username' and bid='$bid'
+                            ;");
       
-			mysqli_query($db,"INSERT INTO issue_book(username,bid,approve)
-							  VALUES('$_SESSION[login_user]', '$_POST[bid]','pending');");
+			
 		?>
 		<script type="text/javascript">
-			window.location="requested.php"
+			window.location="expire.php"
 		</script>
 		<?php
 
