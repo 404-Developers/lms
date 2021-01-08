@@ -63,7 +63,9 @@ include "nav.php";
 
         if($count==0)
         {
-           mysqli_query($db,"INSERT INTO STUDENT VALUES('$_POST[first]', '$_POST[last]', '$_POST[username]', '$_POST[password]', '$_POST[email]', '$_POST[phone]');");
+          $password=$_POST['password'];
+          $hashed_password=sha1($password);
+           mysqli_query($db,"INSERT INTO STUDENT VALUES('$_POST[first]', '$_POST[last]', '$_POST[username]', '{$hashed_password}', '$_POST[email]', '$_POST[phone]');");
 
         ?>
           <script type="text/javascript">
